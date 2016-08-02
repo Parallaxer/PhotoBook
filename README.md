@@ -9,7 +9,7 @@ An example app which showcases the [Parallaxer](https://github.com/Parallaxer/Pa
 
 1) Download the source:
 ```
-$ git clone git@github.com:Parallaxer/PhotoBook.git
+$ git clone https://github.com/Parallaxer/PhotoBook.git
 $ cd PhotoBook/
 ```
 
