@@ -1,5 +1,5 @@
 # PhotoBook
-An example app which showcases the [`Parallaxer`](https://github.com/Parallaxer/Parallaxer) framework.
+An example app which showcases the [Parallaxer](https://github.com/Parallaxer/Parallaxer) framework.
 
 ## Requirements
 - Swift 3.0
@@ -17,5 +17,5 @@ $ cd PhotoBook/
 
 ## License
 
-`PhotoBook` is maintained by [Clifton Roberts](mailto:clifton.roberts@me.com) and released
+PhotoBook is maintained by [Clifton Roberts](mailto:clifton.roberts@me.com) and released
 under the MIT license. See LICENSE for details.
