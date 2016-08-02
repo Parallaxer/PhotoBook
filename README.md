@@ -19,3 +19,6 @@ $ cd PhotoBook/
 
 PhotoBook is maintained by [Clifton Roberts](mailto:clifton.roberts@me.com) and released
 under the MIT license. See LICENSE for details.
+
+- Animal images are public domain, obtained via [pixabay](https://pixabay.com/) and altered
+under Creative Commons CC0.
