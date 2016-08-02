@@ -1,0 +1,6 @@
+framework module Parallaxer {
+  umbrella header "Parallaxer-umbrella.h"
+
+  export *
+  module * { export * }
+}
