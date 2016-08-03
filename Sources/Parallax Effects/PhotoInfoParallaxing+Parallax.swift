@@ -1,11 +1,11 @@
 import Parallaxer
 import UIKit
 
-extension PhotoInfoParallaxTransitioning {
+extension PhotoInfoParallaxing {
     
     /// Fade out the photo book and display the photo info. While in progress, this effect prevents user
     /// interaction on the photo book.
-    var focusPhotoInfoEffect: ParallaxEffect<CGFloat> {
+    var showInfoEffect: ParallaxEffect<CGFloat> {
         var controller = ParallaxEffect<CGFloat>(
             interval: ParallaxInterval(from: 0, to: 1),
             onChange: { self.photoBookInteractionEnabled = $0 == 0 }
