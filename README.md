@@ -1,3 +1,5 @@
+![Parallaxer in action](/../media/Media/demo.gif?raw=true "Parallaxer in action")
+
 # PhotoBook
 An example app which showcases the [Parallaxer](https://github.com/Parallaxer/Parallaxer) framework.
 
