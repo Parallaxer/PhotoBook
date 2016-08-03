@@ -10,17 +10,18 @@
 		88302330E0ABDC2109D6E339 /* Pods_PhotoBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 038CE27965F7113CD6ED0198 /* Pods_PhotoBook.framework */; };
 		AF0D585C1D498A6D00FB6E5E /* PhotoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0D58501D498A6D00FB6E5E /* PhotoInfo.swift */; };
 		AF0D585D1D498A6D00FB6E5E /* PageKeyView+Parallax.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0D58521D498A6D00FB6E5E /* PageKeyView+Parallax.swift */; };
-		AF0D585E1D498A6D00FB6E5E /* PageView+Parallax.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0D58531D498A6D00FB6E5E /* PageView+Parallax.swift */; };
-		AF0D58601D498A6D00FB6E5E /* PhotoBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0D58561D498A6D00FB6E5E /* PhotoBookViewController.swift */; };
 		AF0D58611D498A6D00FB6E5E /* PageKeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0D58581D498A6D00FB6E5E /* PageKeyView.swift */; };
-		AF0D58621D498A6D00FB6E5E /* PageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0D58591D498A6D00FB6E5E /* PageView.swift */; };
-		AF0D58631D498A6D00FB6E5E /* PhotoBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0D585A1D498A6D00FB6E5E /* PhotoBookView.swift */; };
 		AF0D58641D498A6D00FB6E5E /* PhotoInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0D585B1D498A6D00FB6E5E /* PhotoInfoView.swift */; };
 		AF23A37F1D4A93E900EA41D3 /* AppSupport.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF23A37E1D4A93E900EA41D3 /* AppSupport.xcassets */; };
+		AF265A631D516B49009F8088 /* PhotoBookParallaxing.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF265A621D516B49009F8088 /* PhotoBookParallaxing.swift */; };
+		AF28B33D1D5132E4004CE62E /* PhotoBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF28B33C1D5132E4004CE62E /* PhotoBookViewController.swift */; };
+		AF28B33F1D5135CF004CE62E /* PhotoBookCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF28B33E1D5135CF004CE62E /* PhotoBookCollectionViewCell.swift */; };
+		AF2AE68F1D511F9A00037F2F /* PhotoBookCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2AE68E1D511F9A00037F2F /* PhotoBookCollectionViewLayout.swift */; };
 		AF2F2B6A1D483CEC00CEB4D0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2F2B691D483CEC00CEB4D0 /* Constants.swift */; };
-		AF6F097E1D49ECC80028992A /* PhotoInfoParallaxTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6F097D1D49ECC80028992A /* PhotoInfoParallaxTransitioning.swift */; };
-		AF6F09801D49F2460028992A /* PhotoInfoParallaxTransitioning+Parallax.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6F097F1D49F2460028992A /* PhotoInfoParallaxTransitioning+Parallax.swift */; };
+		AF6F097E1D49ECC80028992A /* PhotoInfoParallaxing.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6F097D1D49ECC80028992A /* PhotoInfoParallaxing.swift */; };
+		AF6F09801D49F2460028992A /* PhotoInfoParallaxing+Parallax.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6F097F1D49F2460028992A /* PhotoInfoParallaxing+Parallax.swift */; };
 		AFA181A31D49BBBF0026C2FB /* ClosureBasedScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA181A21D49BBBF0026C2FB /* ClosureBasedScrollView.swift */; };
+		AFAD01A71D513F8900A8EE48 /* PhotoBookParallaxing+Parallax.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFAD01A61D513F8900A8EE48 /* PhotoBookParallaxing+Parallax.swift */; };
 		AFD6F16A1D47F99400F18036 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AFD6F1591D47F99400F18036 /* Assets.xcassets */; };
 		AFD6F16B1D47F99400F18036 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFD6F15A1D47F99400F18036 /* LaunchScreen.storyboard */; };
 		AFD6F16C1D47F99400F18036 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFD6F15C1D47F99400F18036 /* Main.storyboard */; };
@@ -35,20 +36,21 @@
 		AF0D58461D4978EB00FB6E5E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		AF0D58501D498A6D00FB6E5E /* PhotoInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoInfo.swift; sourceTree = "<group>"; };
 		AF0D58521D498A6D00FB6E5E /* PageKeyView+Parallax.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PageKeyView+Parallax.swift"; sourceTree = "<group>"; };
-		AF0D58531D498A6D00FB6E5E /* PageView+Parallax.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PageView+Parallax.swift"; sourceTree = "<group>"; };
-		AF0D58561D498A6D00FB6E5E /* PhotoBookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBookViewController.swift; sourceTree = "<group>"; };
 		AF0D58581D498A6D00FB6E5E /* PageKeyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageKeyView.swift; sourceTree = "<group>"; };
-		AF0D58591D498A6D00FB6E5E /* PageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageView.swift; sourceTree = "<group>"; };
-		AF0D585A1D498A6D00FB6E5E /* PhotoBookView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBookView.swift; sourceTree = "<group>"; };
 		AF0D585B1D498A6D00FB6E5E /* PhotoInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoInfoView.swift; sourceTree = "<group>"; };
 		AF1749C41D47F6A5006244D9 /* PhotoBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF23A37E1D4A93E900EA41D3 /* AppSupport.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppSupport.xcassets; sourceTree = "<group>"; };
+		AF265A621D516B49009F8088 /* PhotoBookParallaxing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBookParallaxing.swift; sourceTree = "<group>"; };
+		AF28B33C1D5132E4004CE62E /* PhotoBookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBookViewController.swift; sourceTree = "<group>"; };
+		AF28B33E1D5135CF004CE62E /* PhotoBookCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBookCollectionViewCell.swift; sourceTree = "<group>"; };
+		AF2AE68E1D511F9A00037F2F /* PhotoBookCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBookCollectionViewLayout.swift; sourceTree = "<group>"; };
 		AF2F2B691D483CEC00CEB4D0 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		AF2F2B701D4892AD00CEB4D0 /* Parallaxer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = Parallaxer.framework; path = "/Users/clifton/Library/Developer/Xcode/DerivedData/PhotoBook-caaaeoatlymuiphdapfabfscedab/Build/Products/Debug-iphoneos/Parallaxer.framework"; sourceTree = "<absolute>"; };
 		AF4233971D502FA8009DBCD5 /* Parallaxer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parallaxer.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/PhotoBook-caaaeoatlymuiphdapfabfscedab/Build/Products/Debug-iphonesimulator/Parallaxer.framework"; sourceTree = "<group>"; };
-		AF6F097D1D49ECC80028992A /* PhotoInfoParallaxTransitioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoInfoParallaxTransitioning.swift; sourceTree = "<group>"; };
-		AF6F097F1D49F2460028992A /* PhotoInfoParallaxTransitioning+Parallax.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhotoInfoParallaxTransitioning+Parallax.swift"; sourceTree = "<group>"; };
+		AF6F097D1D49ECC80028992A /* PhotoInfoParallaxing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoInfoParallaxing.swift; sourceTree = "<group>"; };
+		AF6F097F1D49F2460028992A /* PhotoInfoParallaxing+Parallax.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhotoInfoParallaxing+Parallax.swift"; sourceTree = "<group>"; };
 		AFA181A21D49BBBF0026C2FB /* ClosureBasedScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClosureBasedScrollView.swift; path = "../View Controllers/ClosureBasedScrollView.swift"; sourceTree = "<group>"; };
+		AFAD01A61D513F8900A8EE48 /* PhotoBookParallaxing+Parallax.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhotoBookParallaxing+Parallax.swift"; sourceTree = "<group>"; };
 		AFD6F1591D47F99400F18036 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AFD6F15B1D47F99400F18036 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AFD6F15D1D47F99400F18036 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -80,8 +82,8 @@
 			isa = PBXGroup;
 			children = (
 				AF0D58521D498A6D00FB6E5E /* PageKeyView+Parallax.swift */,
-				AF0D58531D498A6D00FB6E5E /* PageView+Parallax.swift */,
-				AF6F097F1D49F2460028992A /* PhotoInfoParallaxTransitioning+Parallax.swift */,
+				AF6F097F1D49F2460028992A /* PhotoInfoParallaxing+Parallax.swift */,
+				AFAD01A61D513F8900A8EE48 /* PhotoBookParallaxing+Parallax.swift */,
 			);
 			path = "Parallax Effects";
 			sourceTree = "<group>";
@@ -89,7 +91,7 @@
 		AF0D58551D498A6D00FB6E5E /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				AF0D58561D498A6D00FB6E5E /* PhotoBookViewController.swift */,
+				AF28B33C1D5132E4004CE62E /* PhotoBookViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -99,8 +101,8 @@
 			children = (
 				AFA181A21D49BBBF0026C2FB /* ClosureBasedScrollView.swift */,
 				AF0D58581D498A6D00FB6E5E /* PageKeyView.swift */,
-				AF0D58591D498A6D00FB6E5E /* PageView.swift */,
-				AF0D585A1D498A6D00FB6E5E /* PhotoBookView.swift */,
+				AF28B33E1D5135CF004CE62E /* PhotoBookCollectionViewCell.swift */,
+				AF2AE68E1D511F9A00037F2F /* PhotoBookCollectionViewLayout.swift */,
 				AF0D585B1D498A6D00FB6E5E /* PhotoInfoView.swift */,
 			);
 			path = Views;
@@ -130,7 +132,8 @@
 		AF6F097C1D49ECC80028992A /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				AF6F097D1D49ECC80028992A /* PhotoInfoParallaxTransitioning.swift */,
+				AF6F097D1D49ECC80028992A /* PhotoInfoParallaxing.swift */,
+				AF265A621D516B49009F8088 /* PhotoBookParallaxing.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -307,16 +310,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF0D585C1D498A6D00FB6E5E /* PhotoInfo.swift in Sources */,
-				AF0D585E1D498A6D00FB6E5E /* PageView+Parallax.swift in Sources */,
-				AF0D58601D498A6D00FB6E5E /* PhotoBookViewController.swift in Sources */,
 				AFA181A31D49BBBF0026C2FB /* ClosureBasedScrollView.swift in Sources */,
-				AF6F097E1D49ECC80028992A /* PhotoInfoParallaxTransitioning.swift in Sources */,
+				AF6F097E1D49ECC80028992A /* PhotoInfoParallaxing.swift in Sources */,
+				AF28B33D1D5132E4004CE62E /* PhotoBookViewController.swift in Sources */,
 				AFD6F16E1D47F99400F18036 /* AppDelegate.swift in Sources */,
-				AF0D58631D498A6D00FB6E5E /* PhotoBookView.swift in Sources */,
-				AF6F09801D49F2460028992A /* PhotoInfoParallaxTransitioning+Parallax.swift in Sources */,
+				AF28B33F1D5135CF004CE62E /* PhotoBookCollectionViewCell.swift in Sources */,
+				AF6F09801D49F2460028992A /* PhotoInfoParallaxing+Parallax.swift in Sources */,
+				AFAD01A71D513F8900A8EE48 /* PhotoBookParallaxing+Parallax.swift in Sources */,
+				AF265A631D516B49009F8088 /* PhotoBookParallaxing.swift in Sources */,
 				AF0D58611D498A6D00FB6E5E /* PageKeyView.swift in Sources */,
 				AF0D585D1D498A6D00FB6E5E /* PageKeyView+Parallax.swift in Sources */,
-				AF0D58621D498A6D00FB6E5E /* PageView.swift in Sources */,
+				AF2AE68F1D511F9A00037F2F /* PhotoBookCollectionViewLayout.swift in Sources */,
 				AF2F2B6A1D483CEC00CEB4D0 /* Constants.swift in Sources */,
 				AF0D58641D498A6D00FB6E5E /* PhotoInfoView.swift in Sources */,
 			);

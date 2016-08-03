@@ -4,7 +4,7 @@ import UIKit
 extension PageKeyView {
     
     /// Effect which positions, sizes the slider, and rotates the view slightly around the y-axis.
-    var updateProgressEffect: ParallaxEffect<CGFloat> {
+    var indicateCurrentPage: ParallaxEffect<CGFloat> {
         var effect = ParallaxEffect<CGFloat>(interval: ParallaxInterval(from: 0, to: 1))
         effect.addEffect(self.slideEffect)
         effect.addEffect(self.shrinkEffect)

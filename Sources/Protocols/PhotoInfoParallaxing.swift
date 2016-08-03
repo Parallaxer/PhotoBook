@@ -1,7 +1,10 @@
 import Parallaxer
 import UIKit
 
-protocol PhotoInfoParallaxTransitioning: class {
+/**
+ Conformance allows vertical interaction to show/dismiss information about a photo.
+ */
+protocol PhotoInfoParallaxing: class {
     
     /// The interaction that will drive the photo info transition, based on a scroll view.
     var photoInfoInteraction: ClosureBasedScrollView? { get set }
@@ -24,12 +27,12 @@ protocol PhotoInfoParallaxTransitioning: class {
     func preparePhotoInfoInteraction()
     
     /**
-     Update the photo info interaction.
+     Update the photo info parallax. Call this any time layout changes, or interaction occurs.
      */
-    func updatePhotoInfoInteraction()
+    func updatePhotoInfoParallax()
 }
 
-extension PhotoInfoParallaxTransitioning where Self: UIViewController {
+extension PhotoInfoParallaxing where Self: UIViewController {
     
     func preparePhotoInfoInteraction() {
         let interaction = ClosureBasedScrollView()
@@ -39,18 +42,18 @@ extension PhotoInfoParallaxTransitioning where Self: UIViewController {
         interaction.alwaysBounceHorizontal = false
         interaction.showsVerticalScrollIndicator = false
         interaction.showsHorizontalScrollIndicator = false
-        interaction.applyPanGesture(toView: self.view) { [weak self] _ in self?.updatePhotoInfoInteraction() }
+        interaction.applyPanGesture(toView: self.view) { [weak self] _ in self?.updatePhotoInfoParallax() }
         self.view.addSubview(interaction)
         self.photoInfoInteraction = interaction
     }
     
-    func updatePhotoInfoInteraction() {
+    func updatePhotoInfoParallax() {
         guard let interaction = self.photoInfoInteraction else {
             return
         }
         
         var controller = ParallaxEffect(interval: ParallaxInterval(from: 0, to: interaction.bounds.height))
-        controller.addEffect(self.focusPhotoInfoEffect)
+        controller.addEffect(self.showInfoEffect)
         controller.seed(withValue: interaction.contentOffset.y)
     }
 }
