@@ -32,7 +32,7 @@
 		038CE27965F7113CD6ED0198 /* Pods_PhotoBook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PhotoBook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		71E42CA57E1D4D3026E3436E /* Pods-PhotoBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoBook.release.xcconfig"; path = "Pods/Target Support Files/Pods-PhotoBook/Pods-PhotoBook.release.xcconfig"; sourceTree = "<group>"; };
 		8F2124EBF64BB9101AE05257 /* Pods-PhotoBook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoBook.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PhotoBook/Pods-PhotoBook.debug.xcconfig"; sourceTree = "<group>"; };
-		AF0D58451D4978EB00FB6E5E /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		AF0D58451D4978EB00FB6E5E /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
 		AF0D58461D4978EB00FB6E5E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		AF0D58501D498A6D00FB6E5E /* PhotoInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoInfo.swift; sourceTree = "<group>"; };
 		AF0D58521D498A6D00FB6E5E /* PageKeyView+Parallax.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PageKeyView+Parallax.swift"; sourceTree = "<group>"; };
@@ -45,12 +45,11 @@
 		AF28B33E1D5135CF004CE62E /* PhotoBookCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBookCollectionViewCell.swift; sourceTree = "<group>"; };
 		AF2AE68E1D511F9A00037F2F /* PhotoBookCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBookCollectionViewLayout.swift; sourceTree = "<group>"; };
 		AF2F2B691D483CEC00CEB4D0 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		AF2F2B701D4892AD00CEB4D0 /* Parallaxer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = Parallaxer.framework; path = "/Users/clifton/Library/Developer/Xcode/DerivedData/PhotoBook-caaaeoatlymuiphdapfabfscedab/Build/Products/Debug-iphoneos/Parallaxer.framework"; sourceTree = "<absolute>"; };
-		AF4233971D502FA8009DBCD5 /* Parallaxer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parallaxer.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/PhotoBook-caaaeoatlymuiphdapfabfscedab/Build/Products/Debug-iphonesimulator/Parallaxer.framework"; sourceTree = "<group>"; };
 		AF6F097D1D49ECC80028992A /* PhotoInfoParallaxing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoInfoParallaxing.swift; sourceTree = "<group>"; };
 		AF6F097F1D49F2460028992A /* PhotoInfoParallaxing+Parallax.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhotoInfoParallaxing+Parallax.swift"; sourceTree = "<group>"; };
 		AFA181A21D49BBBF0026C2FB /* ClosureBasedScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClosureBasedScrollView.swift; path = "../View Controllers/ClosureBasedScrollView.swift"; sourceTree = "<group>"; };
 		AFAD01A61D513F8900A8EE48 /* PhotoBookParallaxing+Parallax.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhotoBookParallaxing+Parallax.swift"; sourceTree = "<group>"; };
+		AFB18E6B1D552BA6007534A5 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		AFD6F1591D47F99400F18036 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AFD6F15B1D47F99400F18036 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AFD6F15D1D47F99400F18036 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -111,7 +110,8 @@
 		AF1749BB1D47F6A5006244D9 = {
 			isa = PBXGroup;
 			children = (
-				AF0D58451D4978EB00FB6E5E /* LICENSE */,
+				AFB18E6B1D552BA6007534A5 /* CHANGELOG.md */,
+				AF0D58451D4978EB00FB6E5E /* LICENSE.md */,
 				AF0D58461D4978EB00FB6E5E /* README.md */,
 				AFD6F15F1D47F99400F18036 /* Sources */,
 				AFD6F1581D47F99400F18036 /* Resources */,
@@ -167,8 +167,6 @@
 		AFD6F1761D47FC2C00F18036 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AF4233971D502FA8009DBCD5 /* Parallaxer.framework */,
-				AF2F2B701D4892AD00CEB4D0 /* Parallaxer.framework */,
 				038CE27965F7113CD6ED0198 /* Pods_PhotoBook.framework */,
 			);
 			name = Frameworks;

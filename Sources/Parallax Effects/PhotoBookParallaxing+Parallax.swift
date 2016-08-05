@@ -14,8 +14,8 @@ extension PhotoBookParallaxing {
     }
     
     private func addEffectsForVisibleCells(to parallaxEffect: inout ParallaxEffect<CGFloat>) {
-        let indexPaths = self.photoBookLayout.collectionView?.indexPathsForVisibleItems() ?? []
-        let visibleCells = self.photoBookLayout.collectionView?.visibleCells() ?? []
+        let indexPaths = self.photoBookLayout.collectionView?.indexPathsForVisibleItems ?? []
+        let visibleCells = self.photoBookLayout.collectionView?.visibleCells ?? []
         let unitItemWidth = 1 / Double(photoBookLayout.numberOfItems - 1)
 
         for (indexPath, cell) in zip(indexPaths, visibleCells) {

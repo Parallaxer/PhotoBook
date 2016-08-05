@@ -23,7 +23,7 @@ class PhotoBookViewController: UIViewController {
         self.preparePhotoInfoInteraction()
     }
     
-    override func prefersStatusBarHidden() -> Bool {
+    override var prefersStatusBarHidden: Bool {
         return true
     }
     
