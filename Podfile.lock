@@ -1,5 +1,5 @@
 PODS:
-  - Parallaxer (1.0.0)
+  - Parallaxer (2.0.0)
 
 DEPENDENCIES:
   - Parallaxer (from `https://github.com/Parallaxer/Parallaxer.git`)
@@ -10,11 +10,11 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Parallaxer:
-    :commit: 421ee0d48cec8ec5a9c4b8a356cbe9d353bbea3f
+    :commit: cdd56a87a7dee0266bcd165d989a142fd42b5d4a
     :git: https://github.com/Parallaxer/Parallaxer.git
 
 SPEC CHECKSUMS:
-  Parallaxer: 3c5f2d46056898af2a4a97de94d15856c7a0cb94
+  Parallaxer: 8e7260c766bc4c2ff9eb435eb717e56ad75c04d7
 
 PODFILE CHECKSUM: 261d5afdb01352d13c45ccb5e803bd6823e9224a
 
