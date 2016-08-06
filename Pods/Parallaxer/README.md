@@ -1,6 +1,6 @@
 # Parallaxer
 
-Parallaxer is a Swift framework for composing parallax effects.
+Parallaxer is a framework for crafting parallax effects in Swift.
 
 ## Requirements
 - Swift 3.0
@@ -13,11 +13,18 @@ Parallaxer is a Swift framework for composing parallax effects.
 github "Parallaxer/Parallaxer"
 ```
 
+#### With [CocoaPods v1.1.0.beta](https://github.com/CocoaPods/CocoaPods)
+
+```
+use_frameworks!
+pod 'Parallaxer', :git => 'https://github.com/Parallaxer/Parallaxer.git'
+```
+
 ## Overview
 
 Parallax effects are achieved by composing a tree of `ParallaxEffect` objects,
-referred to hereafter as a *parallax tree*. Below is a brief description of the types used
-to construct nodes in a parallax tree. See source files for more documentation.
+or *parallax tree*. Below is a brief description of the types used to construct
+nodes in a parallax tree. See source files for more documentation.
 
 - `ParallaxEffect`:
     - A node in a parallax tree. 
@@ -40,12 +47,13 @@ var percentage: Double?
 
 // Define an effect that expresses a value as a percentage of its parent interval.
 let calculatePercentage = ParallaxEffect<Double>(
-    interval: ParallaxInterval(from: 0, to: 100),
-    onChange: { percentage = $0 }
+    over:   ParallaxInterval(from: 0, to: 100),
+    change: { percentage = $0 }
 )
 
-var root = ParallaxEffect(interval: ParallaxInterval(from: 0, to: 4))
+var root = ParallaxEffect(over: ParallaxInterval(from: 0, to: 4))
 root.addEffect(calculatePercentage)
+
 root.seed(withValue: 2)
 print(percentage) // Output: 50.0
 ```
@@ -53,7 +61,7 @@ print(percentage) // Output: 50.0
 ### [PhotoBook](https://github.com/Parallaxer/PhotoBook) example project
 
 Check out [PhotoBook](https://github.com/Parallaxer/PhotoBook), an example project which showcases
-the Parallaxer framework; it's much more interesting than the percentage example, I promise.
+the Parallaxer framework.
 
 ## License
 
