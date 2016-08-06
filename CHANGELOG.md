@@ -2,6 +2,16 @@
 
 ### Enhancements
 
+- None
+
+### Bug Fixes
+
+- None
+
+# 2.0.0
+
+### Enhancements
+
 - Update to Parallaxer v2.0.0.
   [#3](https://github.com/Parallaxer/PhotoBook/pull/3)
 - Update to support UIKit changes in Xcode 8 beta 4.
