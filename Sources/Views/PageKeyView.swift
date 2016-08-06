@@ -98,7 +98,7 @@ class PageKeyView: UIView {
     
     private func createCircleView(isHollow: Bool) -> UIView {
         let view = UIView()
-        view.backgroundColor = isHollow ? UIColor.init(white: 1, alpha: 0.5) : UIColor.white()
+        view.backgroundColor = isHollow ? UIColor.init(white: 1, alpha: 0.5) : UIColor.white
         return view
     }
 }

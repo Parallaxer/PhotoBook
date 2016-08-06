@@ -11,14 +11,14 @@ class PhotoBookCollectionViewLayout: UICollectionViewLayout {
     private var itemAttributes = [UICollectionViewLayoutAttributes]()
     private var contentSize: CGSize?
     
-    override func collectionViewContentSize() -> CGSize {
+    override var collectionViewContentSize: CGSize {
         return self.contentSize ?? CGSize.zero
     }
     
     override func prepare() {
         super.prepare()
         
-        assert(self.collectionView?.numberOfSections() == 1,
+        assert(self.collectionView?.numberOfSections == 1,
                "PhotoBookCollectionViewLayout requires 1 section.")
         
         let numberOfItems = self.collectionView?.numberOfItems(inSection: 0) ?? 0
