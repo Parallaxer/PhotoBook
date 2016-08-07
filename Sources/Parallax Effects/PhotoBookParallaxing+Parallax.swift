@@ -1,7 +1,6 @@
 import Parallaxer
 import UIKit
 
-
 extension PhotoBookParallaxing {
     
     /// Parallax effect that follows page changes in the photo book.

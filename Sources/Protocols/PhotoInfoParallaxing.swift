@@ -15,7 +15,7 @@ protocol PhotoInfoParallaxing: class {
     /// The photo book alpha value.
     var photoBookAlpha: CGFloat { get set }
     
-    /// The size of the photo book, normalized between 0 an 1.
+    /// The size of the photo book, normalized between 0 and 1.
     var photoBookScale: CGFloat { get set }
     
     /// The height of an info view, which is expected to start at the bottom of the screen.
