@@ -2,7 +2,8 @@
 
 ### Enhancements
 
-- None
+- Address typos, remove unneccesary imports, upgrade to recommended project settings.
+  [#6](https://github.com/Parallaxer/PhotoBook/pull/6)
 
 ### Bug Fixes
 
