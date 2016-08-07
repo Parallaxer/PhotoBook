@@ -1,5 +1,4 @@
 import Parallaxer
-import UIKit
 
 extension PhotoInfoParallaxing {
     

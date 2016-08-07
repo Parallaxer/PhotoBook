@@ -1,5 +1,4 @@
 import UIKit
-import Parallaxer
 
 /**
  A scroll view which is its own delegate, and serves only to report pan interactions.
