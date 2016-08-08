@@ -12,7 +12,7 @@ extension PageKeyView {
     }
     
     private var slideEffect: ParallaxEffect<CGFloat> {
-        return ParallaxEffect<CGFloat>(
+        return ParallaxEffect(
             over:       ParallaxInterval(from: self.leftPosition, to: self.rightPosition),
             clamped:    true,
             change:     { self.sliderPosition = $0 }
@@ -21,7 +21,7 @@ extension PageKeyView {
     
     private var shrinkEffect: ParallaxEffect<CGFloat> {
         let numberOfPageTurns = Double(self.numberOfPages - 1)
-        return ParallaxEffect<CGFloat>(
+        return ParallaxEffect(
             over:       ParallaxInterval(from: 1, to: 0.6),
             curve:      .oscillate(numberOfTimes: numberOfPageTurns),
             clamped:    true,
@@ -31,7 +31,7 @@ extension PageKeyView {
     
     private var rotateEffect: ParallaxEffect<CGFloat> {
         let rotateAmount = Constants.Math.pi / 5
-        return ParallaxEffect<CGFloat>(
+        return ParallaxEffect(
             over:   ParallaxInterval(from: rotateAmount, to: -rotateAmount),
             change: { self.rotation = $0 }
         )

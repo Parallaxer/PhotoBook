@@ -37,7 +37,7 @@ private extension UICollectionViewCell {
     }
     
     private var fadeEffect: ParallaxEffect<CGFloat> {
-        return ParallaxEffect<CGFloat>(
+        return ParallaxEffect(
             over:       ParallaxInterval(from: 0.5, to: 1),
             curve:      .oscillate(numberOfTimes: 1.0),
             clamped:    true,
@@ -46,7 +46,7 @@ private extension UICollectionViewCell {
     }
     
     private var scaleEffect: ParallaxEffect<CGFloat> {
-        return ParallaxEffect<CGFloat>(
+        return ParallaxEffect(
             over:       ParallaxInterval(from: 0.85, to: 1),
             curve:      .oscillate(numberOfTimes: 1.0),
             clamped:    true,
