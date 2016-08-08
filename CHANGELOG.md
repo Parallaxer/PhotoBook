@@ -2,7 +2,8 @@
 
 ### Enhancements
 
-- None
+- Generic types are specified implicitly wherever possible.
+  [#8](https://github.com/Parallaxer/PhotoBook/pull/8)
 
 ### Bug Fixes
 
