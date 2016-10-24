@@ -2,6 +2,9 @@
 
 ### Enhancements
 
+- Update to Xcode 8 GM
+  [#9](https://github.com/Parallaxer/PhotoBook/pull/9)
+
 - Generic types are specified implicitly wherever possible.
   [#8](https://github.com/Parallaxer/PhotoBook/pull/8)
 
