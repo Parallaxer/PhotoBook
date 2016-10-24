@@ -5,14 +5,14 @@ import UIKit
  */
 class ClosureBasedScrollView: UIScrollView {
     
-    private var onPan: ((scrollView: UIScrollView) -> ())?
+    fileprivate var onPan: ((_ scrollView: UIScrollView) -> ())?
     
     override var delegate: UIScrollViewDelegate? {
         get { return self }
         set { super.delegate = self }
     }
     
-    func applyPanGesture(toView view: UIView, onPan: (scrollView: UIScrollView) -> ()) {
+    func applyPanGesture(toView view: UIView, onPan: @escaping (_ scrollView: UIScrollView) -> ()) {
         self.onPan = onPan
         self.delegate = self
         view.addGestureRecognizer(self.panGestureRecognizer)
@@ -22,6 +22,6 @@ class ClosureBasedScrollView: UIScrollView {
 extension ClosureBasedScrollView: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        self.onPan?(scrollView: self)
+        self.onPan?(self)
     }
 }

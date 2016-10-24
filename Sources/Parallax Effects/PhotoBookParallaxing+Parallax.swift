@@ -28,7 +28,7 @@ extension PhotoBookParallaxing {
 
 private extension UICollectionViewCell {
     
-    private var turnPageEffect: ParallaxEffect<CGFloat> {
+    var turnPageEffect: ParallaxEffect<CGFloat> {
         var effect = ParallaxEffect<CGFloat>(over: ParallaxInterval(from: 0, to: 1))
         let spanningInterval = ParallaxInterval(from: -1.0, to: 1.0)
         effect.addEffect(self.fadeEffect, toSubinterval: spanningInterval)
@@ -36,7 +36,7 @@ private extension UICollectionViewCell {
         return effect
     }
     
-    private var fadeEffect: ParallaxEffect<CGFloat> {
+    var fadeEffect: ParallaxEffect<CGFloat> {
         return ParallaxEffect(
             over:       ParallaxInterval(from: 0.5, to: 1),
             curve:      .oscillate(numberOfTimes: 1.0),
@@ -45,7 +45,7 @@ private extension UICollectionViewCell {
         )
     }
     
-    private var scaleEffect: ParallaxEffect<CGFloat> {
+    var scaleEffect: ParallaxEffect<CGFloat> {
         return ParallaxEffect(
             over:       ParallaxInterval(from: 0.85, to: 1),
             curve:      .oscillate(numberOfTimes: 1.0),

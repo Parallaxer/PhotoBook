@@ -1,21 +1,12 @@
 PODS:
-  - Parallaxer (2.0.0)
+  - Parallaxer (2.1.0)
 
 DEPENDENCIES:
-  - Parallaxer (from `https://github.com/Parallaxer/Parallaxer.git`)
-
-EXTERNAL SOURCES:
-  Parallaxer:
-    :git: https://github.com/Parallaxer/Parallaxer.git
-
-CHECKOUT OPTIONS:
-  Parallaxer:
-    :commit: cdd56a87a7dee0266bcd165d989a142fd42b5d4a
-    :git: https://github.com/Parallaxer/Parallaxer.git
+  - Parallaxer
 
 SPEC CHECKSUMS:
-  Parallaxer: 8e7260c766bc4c2ff9eb435eb717e56ad75c04d7
+  Parallaxer: 479bbf008b12b94947c485e910a33b707886ea16
 
-PODFILE CHECKSUM: 261d5afdb01352d13c45ccb5e803bd6823e9224a
+PODFILE CHECKSUM: c66ad435526819944d174d03afd7dba27b355b09
 
-COCOAPODS: 1.1.0.beta.1
+COCOAPODS: 1.1.1

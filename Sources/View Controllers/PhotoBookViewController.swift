@@ -5,14 +5,14 @@ private let kPhotoBookCellID = "PhotoBookCell"
 
 class PhotoBookViewController: UIViewController {
     
-    @IBOutlet private var collectionView: UICollectionView!
-    @IBOutlet private var pageKeyView: PageKeyView!
-    @IBOutlet private var photoInfoView: PhotoInfoView!
-    @IBOutlet private var photoInfoHeightConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate var collectionView: UICollectionView!
+    @IBOutlet fileprivate var pageKeyView: PageKeyView!
+    @IBOutlet fileprivate var photoInfoView: PhotoInfoView!
+    @IBOutlet fileprivate var photoInfoHeightConstraint: NSLayoutConstraint!
     
     var photoInfoInteraction: ClosureBasedScrollView?
     
-    private let photos = PhotoInfo.defaultPhotos
+    fileprivate let photos = PhotoInfo.defaultPhotos
     
     override func viewDidLoad() {
         super.viewDidLoad()
