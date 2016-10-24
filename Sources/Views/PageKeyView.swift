@@ -84,11 +84,11 @@ class PageKeyView: UIView {
         self.outlineContainerView = outlineContainerView
         
         for _ in 0 ..< self.numberOfPages {
-            let outlineView = self.createCircleView(isHollow: true)
+            let outlineView = self.createCircleView(true)
             self.outlineContainerView?.addSubview(outlineView)
         }
         
-        let sliderView = self.createCircleView(isHollow: false)
+        let sliderView = self.createCircleView(false)
         self.containerView?.addSubview(sliderView)
         self.sliderView = sliderView
         
@@ -96,7 +96,7 @@ class PageKeyView: UIView {
         self.layoutIfNeeded()
     }
     
-    private func createCircleView(isHollow: Bool) -> UIView {
+    private func createCircleView(_ isHollow: Bool) -> UIView {
         let view = UIView()
         view.backgroundColor = isHollow ? UIColor.init(white: 1, alpha: 0.5) : UIColor.white
         return view
