@@ -4,5 +4,5 @@
 target 'PhotoBook' do
   use_frameworks!
 
-  pod 'Parallaxer', :git => 'https://github.com/Parallaxer/Parallaxer.git'
+  pod 'Parallaxer'
 end

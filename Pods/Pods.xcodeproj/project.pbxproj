@@ -7,15 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4A52D01972793FCDC0C0DBBA58D8D39B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
+		4DB80CD56EC99EE61CA325FD1651566A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
 		4ED011FA04EF2BA8DEB329ABC33BEFA3 /* Float+Parallaxable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9089386798771441988CC4A94F08FB /* Float+Parallaxable.swift */; };
 		554405F30479C1BF8153469CA59DFEC4 /* Parallaxer-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3382E42C4B79E318253BA8558D9DF09B /* Parallaxer-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		575E9F2707D15A837250D4F1C39F61AA /* Parallaxer-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 674ECC7C7B1B3A0915F74946506078FA /* Parallaxer-dummy.m */; };
+		86513979B203029321D3169E2CD3A5DC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
 		8963EAD91960C46A4910F0DA30FC2306 /* Parallaxable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B435D1908DB6F41136A5B8721AB11420 /* Parallaxable.swift */; };
 		9C1B9C05AE33FF7BED93370C7C9F5A16 /* CGFloat+Parallaxable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900125F6034950F8316F9A8F649F4E82 /* CGFloat+Parallaxable.swift */; };
 		D1E58044993A1FA13DA1B2AC8AB16ED9 /* ParallaxCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7B4EE3EA6257407A523C78E3527D694 /* ParallaxCurve.swift */; };
 		D6A5BA6E921A376B362E7CCF31DDD8AE /* Double+Parallaxable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82411C277FF75AF1F5735D021C020F49 /* Double+Parallaxable.swift */; };
-		DFA2FCD3ADDC1890369C02FE464C35A5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
 		E466417C69C4DBDFB9F17868A28FC887 /* Pods-PhotoBook-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 78B0D806CEF71714E9FDFF67C2F8005D /* Pods-PhotoBook-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F0D0BE3942541769CF6C104165AB79B5 /* ParallaxInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62EC64D564D08923D82F98D4BA3AC817 /* ParallaxInterval.swift */; };
 		F7CB9E38FF265D25F4BEB5903163D4E2 /* ParallaxEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D6CBF39D4AA4A0892E31B20DBC8291 /* ParallaxEffect.swift */; };
@@ -56,7 +56,7 @@
 		A8A1C860D0C182212804A1A58F075AE4 /* Parallaxer.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Parallaxer.xcconfig; sourceTree = "<group>"; };
 		B435D1908DB6F41136A5B8721AB11420 /* Parallaxable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Parallaxable.swift; path = Sources/Parallaxable.swift; sourceTree = "<group>"; };
 		B9A0808C7A2D8E5DF44D08AA47100F2C /* Pods-PhotoBook.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-PhotoBook.modulemap"; sourceTree = "<group>"; };
-		CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		D8406A56C624EFD516BB083959D71804 /* Pods-PhotoBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PhotoBook.release.xcconfig"; sourceTree = "<group>"; };
 		DA9089386798771441988CC4A94F08FB /* Float+Parallaxable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Float+Parallaxable.swift"; path = "Sources/Paralaxables/Float+Parallaxable.swift"; sourceTree = "<group>"; };
 		E6E51CDD9CF2737510C6A859BFFCE661 /* Pods-PhotoBook-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PhotoBook-resources.sh"; sourceTree = "<group>"; };
@@ -69,7 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A52D01972793FCDC0C0DBBA58D8D39B /* Foundation.framework in Frameworks */,
+				86513979B203029321D3169E2CD3A5DC /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,7 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DFA2FCD3ADDC1890369C02FE464C35A5 /* Foundation.framework in Frameworks */,
+				4DB80CD56EC99EE61CA325FD1651566A /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,14 +102,6 @@
 			path = "Target Support Files/Pods-PhotoBook";
 			sourceTree = "<group>";
 		};
-		3DCAB2B7CDE207B3958B6CB957FCC758 /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */,
-			);
-			name = iOS;
-			sourceTree = "<group>";
-		};
 		45D1252F4DFD330B3EAFCDC7144FEC9E /* Parallaxer */ = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +124,14 @@
 				45D1252F4DFD330B3EAFCDC7144FEC9E /* Parallaxer */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		7531C8F8DE19F1AA3C8A7AC97A91DC29 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */,
+			);
+			name = iOS;
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
@@ -162,7 +162,7 @@
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				3DCAB2B7CDE207B3958B6CB957FCC758 /* iOS */,
+				7531C8F8DE19F1AA3C8A7AC97A91DC29 /* iOS */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -349,6 +349,39 @@
 			};
 			name = Debug;
 		};
+		11CAB1079F924C3FA89D58E456969FDF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A8A1C860D0C182212804A1A58F075AE4 /* Parallaxer.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Parallaxer/Parallaxer-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Parallaxer/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Parallaxer/Parallaxer.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = Parallaxer;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		44CDBB6D11DE06DB64D6268622BDC47E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -389,105 +422,13 @@
 			};
 			name = Release;
 		};
-		46053D280AA154C5F534C6C18BFC6CA7 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = A8A1C860D0C182212804A1A58F075AE4 /* Parallaxer.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Parallaxer/Parallaxer-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Parallaxer/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Parallaxer/Parallaxer.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = Parallaxer;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		9103BF3EB0F07B81AEF888EC72CE947E /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D8406A56C624EFD516BB083959D71804 /* Pods-PhotoBook.release.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-PhotoBook/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-PhotoBook/Pods-PhotoBook.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_PhotoBook;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		BBC24760F3F8C3DB54C2B75AE8031960 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = A8A1C860D0C182212804A1A58F075AE4 /* Parallaxer.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Parallaxer/Parallaxer-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Parallaxer/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Parallaxer/Parallaxer.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = Parallaxer;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		D1EC24185133AA5BBA6C0B6A3E2FFDE2 /* Debug */ = {
+		989CFD052EBFCDC84D01C5672FF8D461 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2814CB8CC3F4E09013B1803935372EE8 /* Pods-PhotoBook.debug.xcconfig */;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
@@ -516,6 +457,73 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
+		};
+		B0153A9E1F12DB29B30D12E63D645697 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A8A1C860D0C182212804A1A58F075AE4 /* Parallaxer.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Parallaxer/Parallaxer-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Parallaxer/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Parallaxer/Parallaxer.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = Parallaxer;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		CAC01C160B8DA3F6F78F9B7670002F6F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D8406A56C624EFD516BB083959D71804 /* Pods-PhotoBook.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-PhotoBook/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-PhotoBook/Pods-PhotoBook.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_PhotoBook;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
@@ -532,8 +540,8 @@
 		B5F81A35F5B32DEB8117BDCBBB6AAEBE /* Build configuration list for PBXNativeTarget "Pods-PhotoBook" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D1EC24185133AA5BBA6C0B6A3E2FFDE2 /* Debug */,
-				9103BF3EB0F07B81AEF888EC72CE947E /* Release */,
+				989CFD052EBFCDC84D01C5672FF8D461 /* Debug */,
+				CAC01C160B8DA3F6F78F9B7670002F6F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -541,8 +549,8 @@
 		BE2AD9080BB649EC5EBC1CB32DD28A9A /* Build configuration list for PBXNativeTarget "Parallaxer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				46053D280AA154C5F534C6C18BFC6CA7 /* Debug */,
-				BBC24760F3F8C3DB54C2B75AE8031960 /* Release */,
+				11CAB1079F924C3FA89D58E456969FDF /* Debug */,
+				B0153A9E1F12DB29B30D12E63D645697 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
