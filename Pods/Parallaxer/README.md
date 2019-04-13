@@ -3,7 +3,7 @@
 Parallaxer is a framework for crafting parallax effects in Swift.
 
 ## Requirements
-- Swift 3.0, Xcode 8 beta 6
+- Swift 4.2
 
 ## Installation
 
@@ -13,11 +13,11 @@ Parallaxer is a framework for crafting parallax effects in Swift.
 github "Parallaxer/Parallaxer"
 ```
 
-#### With [CocoaPods v1.1.0.beta](https://github.com/CocoaPods/CocoaPods)
+#### With [CocoaPods](https://github.com/CocoaPods/CocoaPods)
 
 ```
 use_frameworks!
-pod 'Parallaxer', :git => 'https://github.com/Parallaxer/Parallaxer.git'
+pod 'Parallaxer'
 ```
 
 ## Overview
@@ -29,7 +29,7 @@ nodes in a parallax tree. See source files for more documentation.
 - `ParallaxEffect`:
     - A node in a parallax tree. 
     - Values are set, or seeded, at the root.
-    - Nested effects express values in relation to their parent.
+    - Nested effects express values relative to their parent.
 
 - `ParallaxInterval`:
     - A bidirectional interval with boundaries such that `from != to`.
@@ -47,11 +47,11 @@ var percentage: Double?
 
 // Define an effect that expresses a value as a percentage of its parent interval.
 let calculatePercentage = ParallaxEffect(
-    over:   ParallaxInterval(from: 0, to: 100),
-    change: { percentage = $0 as Double }
+    interval: ParallaxInterval(from: 0, to: 100),
+    change:   { percentage = $0 as Double }
 )
 
-var root = ParallaxEffect(over: ParallaxInterval(from: 0, to: 4))
+var root = ParallaxEffect(interval: ParallaxInterval(from: 0, to: 4))
 root.addEffect(calculatePercentage)
 
 root.seed(withValue: 2)

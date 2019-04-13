@@ -1,12 +1,16 @@
 PODS:
-  - Parallaxer (2.1.0)
+  - Parallaxer (3.0.2)
 
 DEPENDENCIES:
   - Parallaxer
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Parallaxer
+
 SPEC CHECKSUMS:
-  Parallaxer: 479bbf008b12b94947c485e910a33b707886ea16
+  Parallaxer: 982d164590dc221e43dffdce60a2188226e7cb3a
 
 PODFILE CHECKSUM: c66ad435526819944d174d03afd7dba27b355b09
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.6.1
