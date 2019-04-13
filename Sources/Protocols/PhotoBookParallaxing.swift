@@ -45,9 +45,9 @@ extension PhotoBookParallaxing {
     
     private var didShowPhotoEffect: ParallaxEffect<CGFloat> {
         return ParallaxEffect(
-            over:       ParallaxInterval(from: 0, to: CGFloat(self.photoBookLayout.numberOfItems - 1)),
-            clamped:    true,
-            change:     { self.didShowPhoto(atIndex: Int(round($0))) }
+            interval: ParallaxInterval(from: 0, to: CGFloat(self.photoBookLayout.numberOfItems - 1)),
+            isClamped: true,
+            change: { self.didShowPhoto(atIndex: Int(round($0))) }
         )
     }
 }

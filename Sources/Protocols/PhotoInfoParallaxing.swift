@@ -52,7 +52,7 @@ extension PhotoInfoParallaxing where Self: UIViewController {
             return
         }
         
-        var controller = ParallaxEffect(over: ParallaxInterval(from: 0, to: interaction.bounds.height))
+        var controller = ParallaxEffect(interval: ParallaxInterval(from: 0, to: interaction.bounds.height))
         controller.addEffect(self.showInfoEffect)
         controller.seed(withValue: interaction.contentOffset.y)
     }

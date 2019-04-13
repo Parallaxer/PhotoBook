@@ -7,7 +7,7 @@ extension PhotoBookParallaxing {
     var pageChangeEffect: ParallaxEffect<CGFloat> {
         let numberOfItems = self.photoBookLayout.numberOfItems
         let lastItemPosition = self.photoBookLayout.rectForItem(atIndex: numberOfItems - 1).origin.x
-        var root = ParallaxEffect(over: ParallaxInterval(from: 0, to: lastItemPosition))
+        var root = ParallaxEffect(interval: ParallaxInterval(from: 0, to: lastItemPosition))
         self.addEffectsForVisibleCells(to: &root)
         return root
     }
@@ -29,7 +29,7 @@ extension PhotoBookParallaxing {
 private extension UICollectionViewCell {
     
     var turnPageEffect: ParallaxEffect<CGFloat> {
-        var effect = ParallaxEffect<CGFloat>(over: ParallaxInterval(from: 0, to: 1))
+        var effect = ParallaxEffect<CGFloat>(interval: ParallaxInterval(from: 0, to: 1))
         let spanningInterval = ParallaxInterval(from: -1.0, to: 1.0)
         effect.addEffect(self.fadeEffect, toSubinterval: spanningInterval)
         effect.addEffect(self.scaleEffect, toSubinterval: spanningInterval)
@@ -38,19 +38,19 @@ private extension UICollectionViewCell {
     
     var fadeEffect: ParallaxEffect<CGFloat> {
         return ParallaxEffect(
-            over:       ParallaxInterval(from: 0.5, to: 1),
-            curve:      .oscillate(numberOfTimes: 1.0),
-            clamped:    true,
-            change:     { self.alpha = $0 }
+            interval: ParallaxInterval(from: 0.5, to: 1),
+            curve: .oscillate(numberOfTimes: 1.0),
+            isClamped: true,
+            change: { self.alpha = $0 }
         )
     }
     
     var scaleEffect: ParallaxEffect<CGFloat> {
         return ParallaxEffect(
-            over:       ParallaxInterval(from: 0.85, to: 1),
-            curve:      .oscillate(numberOfTimes: 1.0),
-            clamped:    true,
-            change:     { self.transform = CGAffineTransform.init(scaleX: $0, y: $0) }
+            interval: ParallaxInterval(from: 0.85, to: 1),
+            curve: .oscillate(numberOfTimes: 1.0),
+            isClamped: true,
+            change: { self.transform = CGAffineTransform.init(scaleX: $0, y: $0) }
         )
     }
 }
