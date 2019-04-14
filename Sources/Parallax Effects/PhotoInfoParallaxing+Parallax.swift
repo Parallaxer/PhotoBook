@@ -9,9 +9,9 @@ extension PhotoInfoParallaxing {
             interval: ParallaxInterval(from: 0, to: 1),
             change: { self.photoBookInteractionEnabled = $0 == CGFloat(0) }
         )
-        controller.addEffect(self.fadePhotoBookEffect)
-        controller.addEffect(self.scalePhotoBookEffect)
-        controller.addEffect(self.showPhotoInfoEffect, toSubinterval: ParallaxInterval(from: 0.25, to: 1.0))
+        controller.addEffect(fadePhotoBookEffect)
+        controller.addEffect(scalePhotoBookEffect)
+        controller.addEffect(showPhotoInfoEffect, toSubinterval: ParallaxInterval(from: 0.25, to: 1.0))
         return controller
     }
     

@@ -3,7 +3,7 @@ import UIKit
 
 private let kPhotoBookCellID = "PhotoBookCell"
 
-class PhotoBookViewController: UIViewController {
+final class PhotoBookViewController: UIViewController {
     
     @IBOutlet fileprivate var collectionView: UICollectionView!
     @IBOutlet fileprivate var pageKeyView: PageKeyView!
@@ -17,10 +17,10 @@ class PhotoBookViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.pageKeyView.numberOfPages = self.photos.count
-        self.collectionView.reloadData()
+        pageKeyView.numberOfPages = photos.count
+        collectionView.reloadData()
 
-        self.preparePhotoInfoInteraction()
+        preparePhotoInfoInteraction()
     }
     
     override var prefersStatusBarHidden: Bool {
@@ -30,60 +30,60 @@ class PhotoBookViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        self.updatePhotoInfoParallax()
-        self.updatePhotoBookParallax()
+        updatePhotoInfoParallax()
+        updatePhotoBookParallax()
     }
 }
 
 extension PhotoBookViewController: PhotoInfoParallaxing {
     
     var photoBookInteractionEnabled: Bool {
-        get { return self.collectionView.isUserInteractionEnabled == true }
-        set { self.collectionView.isUserInteractionEnabled = newValue }
+        get { return collectionView.isUserInteractionEnabled == true }
+        set { collectionView.isUserInteractionEnabled = newValue }
     }
     
     var photoBookAlpha: CGFloat {
-        get { return self.collectionView.alpha }
-        set { self.collectionView.alpha = newValue }
+        get { return collectionView.alpha }
+        set { collectionView.alpha = newValue }
     }
     
     var photoBookScale: CGFloat {
-        get { return self.collectionView.transform.a }
-        set { self.collectionView.transform = CGAffineTransform(scaleX: newValue, y: newValue) }
+        get { return collectionView.transform.a }
+        set { collectionView.transform = CGAffineTransform(scaleX: newValue, y: newValue) }
     }
     
     var photoInfoHeight: CGFloat {
-        get { return self.photoInfoHeightConstraint.constant }
-        set { self.photoInfoHeightConstraint?.constant = newValue }
+        get { return photoInfoHeightConstraint.constant }
+        set { photoInfoHeightConstraint?.constant = newValue }
     }
 }
 
 extension PhotoBookViewController: PhotoBookParallaxing {
     
     var photoBookLayout: PhotoBookCollectionViewLayout {
-        return self.collectionView.collectionViewLayout as! PhotoBookCollectionViewLayout
+        return collectionView.collectionViewLayout as! PhotoBookCollectionViewLayout
     }
     
     func willSeedPageChangeEffect(_ pageChangeEffect: inout ParallaxEffect<CGFloat>) {
-        pageChangeEffect.addEffect(self.pageKeyView.indicateCurrentPage)
+        pageChangeEffect.addEffect(pageKeyView.indicateCurrentPage)
     }
     
     func didShowPhoto(atIndex index: Int) {
-        self.photoInfoView.populate(withPhotoInfo: self.photos[index])
+        photoInfoView.populate(withPhotoInfo: photos[index])
     }
 }
 
 extension PhotoBookViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.photos.count
+        return photos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath)
         -> UICollectionViewCell
     {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: kPhotoBookCellID, for: indexPath)
-        (cell as? PhotoBookCollectionViewCell)?.image = self.photos[indexPath.row].image
+        (cell as? PhotoBookCollectionViewCell)?.image = photos[indexPath.row].image
         return cell
     }
 }
@@ -91,6 +91,6 @@ extension PhotoBookViewController: UICollectionViewDataSource {
 extension PhotoBookViewController: UICollectionViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        self.updatePhotoBookParallax()
+        updatePhotoBookParallax()
     }
 }

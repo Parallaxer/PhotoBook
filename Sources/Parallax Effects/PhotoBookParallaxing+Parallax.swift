@@ -5,16 +5,16 @@ extension PhotoBookParallaxing {
     
     /// Parallax effect that follows page changes in the photo book.
     var pageChangeEffect: ParallaxEffect<CGFloat> {
-        let numberOfItems = self.photoBookLayout.numberOfItems
-        let lastItemPosition = self.photoBookLayout.rectForItem(atIndex: numberOfItems - 1).origin.x
+        let numberOfItems = photoBookLayout.numberOfItems
+        let lastItemPosition = photoBookLayout.rectForItem(atIndex: numberOfItems - 1).origin.x
         var root = ParallaxEffect(interval: ParallaxInterval(from: 0, to: lastItemPosition))
-        self.addEffectsForVisibleCells(to: &root)
+        addEffectsForVisibleCells(to: &root)
         return root
     }
     
     private func addEffectsForVisibleCells(to parallaxEffect: inout ParallaxEffect<CGFloat>) {
-        let indexPaths = self.photoBookLayout.collectionView?.indexPathsForVisibleItems ?? []
-        let visibleCells = self.photoBookLayout.collectionView?.visibleCells ?? []
+        let indexPaths = photoBookLayout.collectionView?.indexPathsForVisibleItems ?? []
+        let visibleCells = photoBookLayout.collectionView?.visibleCells ?? []
         let unitItemWidth = 1 / Double(photoBookLayout.numberOfItems - 1)
 
         for (indexPath, cell) in zip(indexPaths, visibleCells) {
@@ -31,8 +31,8 @@ private extension UICollectionViewCell {
     var turnPageEffect: ParallaxEffect<CGFloat> {
         var effect = ParallaxEffect<CGFloat>(interval: ParallaxInterval(from: 0, to: 1))
         let spanningInterval = ParallaxInterval(from: -1.0, to: 1.0)
-        effect.addEffect(self.fadeEffect, toSubinterval: spanningInterval)
-        effect.addEffect(self.scaleEffect, toSubinterval: spanningInterval)
+        effect.addEffect(fadeEffect, toSubinterval: spanningInterval)
+        effect.addEffect(scaleEffect, toSubinterval: spanningInterval)
         return effect
     }
     

@@ -5,22 +5,22 @@ extension PageKeyView {
     /// Effect which positions, sizes the slider, and rotates the view slightly around the y-axis.
     var indicateCurrentPage: ParallaxEffect<CGFloat> {
         var effect = ParallaxEffect<CGFloat>(interval: ParallaxInterval(from: 0, to: 1))
-        effect.addEffect(self.slideEffect)
-        effect.addEffect(self.shrinkEffect)
-        effect.addEffect(self.rotateEffect)
+        effect.addEffect(slideEffect)
+        effect.addEffect(shrinkEffect)
+        effect.addEffect(rotateEffect)
         return effect
     }
     
     private var slideEffect: ParallaxEffect<CGFloat> {
         return ParallaxEffect(
-            interval: ParallaxInterval(from: self.leftPosition, to: self.rightPosition),
+            interval: ParallaxInterval(from: leftPosition, to: rightPosition),
             isClamped: true,
             change: { self.sliderPosition = $0 }
         )
     }
     
     private var shrinkEffect: ParallaxEffect<CGFloat> {
-        let numberOfPageTurns = Double(self.numberOfPages - 1)
+        let numberOfPageTurns = Double(numberOfPages - 1)
         return ParallaxEffect(
             interval: ParallaxInterval(from: 1, to: 0.6),
             curve: .oscillate(numberOfTimes: numberOfPageTurns),
@@ -30,7 +30,7 @@ extension PageKeyView {
     }
     
     private var rotateEffect: ParallaxEffect<CGFloat> {
-        let rotateAmount = Constants.Math.pi / 5
+        let rotateAmount = CGFloat.pi / 5
         return ParallaxEffect(
             interval: ParallaxInterval(from: rotateAmount, to: -rotateAmount),
             change: { self.rotation = $0 }

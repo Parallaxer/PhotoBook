@@ -1,58 +1,55 @@
 import Parallaxer
 import UIKit
 
-class PhotoBookCollectionViewLayout: UICollectionViewLayout {
+final class PhotoBookCollectionViewLayout: UICollectionViewLayout {
     
     /// Number of items currently laid out.
     var numberOfItems: Int {
-        return self.itemAttributes.count
+        return itemAttributes.count
     }
     
     private var itemAttributes = [UICollectionViewLayoutAttributes]()
     private var contentSize: CGSize?
     
     override var collectionViewContentSize: CGSize {
-        return self.contentSize ?? CGSize.zero
+        return contentSize ?? CGSize.zero
     }
     
     override func prepare() {
         super.prepare()
         
-        assert(self.collectionView?.numberOfSections == 1,
+        assert(collectionView?.numberOfSections == 1,
                "PhotoBookCollectionViewLayout requires 1 section.")
         
-        let numberOfItems = self.collectionView?.numberOfItems(inSection: 0) ?? 0
-        let lastItemFrame = self.rectForItem(atIndex: numberOfItems - 1)
-        self.contentSize = CGSize(width: lastItemFrame.maxX, height: lastItemFrame.maxY)
+        let numberOfItems = collectionView?.numberOfItems(inSection: 0) ?? 0
+        let lastItemFrame = rectForItem(atIndex: numberOfItems - 1)
+        contentSize = CGSize(width: lastItemFrame.maxX, height: lastItemFrame.maxY)
         
-        self.itemAttributes = (0 ..< numberOfItems).map { index in
+        itemAttributes = (0 ..< numberOfItems).map { index in
             let attributes = UICollectionViewLayoutAttributes(forCellWith: IndexPath(row: index, section: 0))
-            attributes.frame = self.rectForItem(atIndex: index)
+            attributes.frame = rectForItem(atIndex: index)
             return attributes
         }
     }
     
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-        return self.itemAttributes.filter { rect.intersects($0.frame) }
+        return itemAttributes.filter { rect.intersects($0.frame) }
     }
     
     override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-        if indexPath.row >= self.numberOfItems {
+        if indexPath.row >= numberOfItems {
             return nil
         }
 
-        return self.itemAttributes[indexPath.row]
+        return itemAttributes[indexPath.row]
     }
-    
-    /**
-     Calculate a rect describing the frame of the item at `index`.
-     
-     - parameter index: Index of the item for which a rect shall be calculated.
-     
-     - returns: `CGRect` describing the frame of the item at `index`.
-     */
+
+    /// Calculate a rect describing the frame of the item at `index`.
+    ///
+    /// - Parameter index: Index of the item for which a rect shall be calculated.
+    /// - Returns: `CGRect` describing the frame of the item at `index`.
     func rectForItem(atIndex index: Int) -> CGRect {
-        guard let itemSize = self.collectionView?.bounds.size else {
+        guard let itemSize = collectionView?.bounds.size else {
             return CGRect.zero
         }
         

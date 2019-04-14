@@ -1,9 +1,7 @@
 import UIKit
 
-/**
- A scroll view which is its own delegate, and serves only to report pan interactions.
- */
-class ClosureBasedScrollView: UIScrollView {
+/// A scroll view which is its own delegate, and serves only to report pan interactions.
+final class ClosureBasedScrollView: UIScrollView {
     
     fileprivate var onPan: ((_ scrollView: UIScrollView) -> ())?
     
@@ -14,14 +12,14 @@ class ClosureBasedScrollView: UIScrollView {
     
     func applyPanGesture(toView view: UIView, onPan: @escaping (_ scrollView: UIScrollView) -> ()) {
         self.onPan = onPan
-        self.delegate = self
-        view.addGestureRecognizer(self.panGestureRecognizer)
+        delegate = self
+        view.addGestureRecognizer(panGestureRecognizer)
     }
 }
 
 extension ClosureBasedScrollView: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        self.onPan?(self)
+        onPan?(self)
     }
 }
