@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		88302330E0ABDC2109D6E339 /* Pods_PhotoBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 038CE27965F7113CD6ED0198 /* Pods_PhotoBook.framework */; };
+		2CC965A2230C4FC14D17F6E0 /* Pods_PhotoBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74442D920342C7187A2284C9 /* Pods_PhotoBook.framework */; };
 		AF0D585C1D498A6D00FB6E5E /* PhotoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0D58501D498A6D00FB6E5E /* PhotoInfo.swift */; };
 		AF0D585D1D498A6D00FB6E5E /* PageKeyView+Parallax.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0D58521D498A6D00FB6E5E /* PageKeyView+Parallax.swift */; };
 		AF0D58611D498A6D00FB6E5E /* PageKeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0D58581D498A6D00FB6E5E /* PageKeyView.swift */; };
@@ -28,8 +28,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		038CE27965F7113CD6ED0198 /* Pods_PhotoBook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PhotoBook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		71E42CA57E1D4D3026E3436E /* Pods-PhotoBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoBook.release.xcconfig"; path = "Pods/Target Support Files/Pods-PhotoBook/Pods-PhotoBook.release.xcconfig"; sourceTree = "<group>"; };
+		74442D920342C7187A2284C9 /* Pods_PhotoBook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PhotoBook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F2124EBF64BB9101AE05257 /* Pods-PhotoBook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoBook.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PhotoBook/Pods-PhotoBook.debug.xcconfig"; sourceTree = "<group>"; };
 		AF0D58451D4978EB00FB6E5E /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
 		AF0D58461D4978EB00FB6E5E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -60,7 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88302330E0ABDC2109D6E339 /* Pods_PhotoBook.framework in Frameworks */,
+				2CC965A2230C4FC14D17F6E0 /* Pods_PhotoBook.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,8 +114,8 @@
 				AFD6F15F1D47F99400F18036 /* Sources */,
 				AFD6F1581D47F99400F18036 /* Resources */,
 				AF1749C51D47F6A5006244D9 /* Products */,
-				AFD6F1761D47FC2C00F18036 /* Frameworks */,
 				D9474943D4AEB32D2C5FAABB /* Pods */,
+				D5761A658F4AD354BE464F58 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -161,10 +161,10 @@
 			path = Sources;
 			sourceTree = "<group>";
 		};
-		AFD6F1761D47FC2C00F18036 /* Frameworks */ = {
+		D5761A658F4AD354BE464F58 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				038CE27965F7113CD6ED0198 /* Pods_PhotoBook.framework */,
+				74442D920342C7187A2284C9 /* Pods_PhotoBook.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

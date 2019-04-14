@@ -90,6 +90,7 @@
                                     <constraint firstItem="lLI-xq-QrL" firstAttribute="top" secondItem="sc7-Bg-FH5" secondAttribute="top" constant="24" id="n2u-u0-5R1"/>
                                     <constraint firstAttribute="trailing" secondItem="PVr-us-9aq" secondAttribute="trailing" constant="24" id="vF3-Ab-FBE"/>
                                     <constraint firstItem="PVr-us-9aq" firstAttribute="leading" secondItem="sc7-Bg-FH5" secondAttribute="leading" constant="24" id="vpT-6c-A8l"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="lLI-xq-QrL" secondAttribute="trailing" constant="24" id="yZc-Vc-zpi"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="detailLabel" destination="PVr-us-9aq" id="XO6-eN-AfI"/>
