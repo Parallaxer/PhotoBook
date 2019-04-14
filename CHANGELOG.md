@@ -2,6 +2,27 @@
 
 ### Enhancements
 
+- None
+
+### Bug Fixes
+
+- None
+
+# 3.0.2
+
+### Enhancements
+
+- Update to Parallaxer 3.0.2, modernize project.
+  [#10](https://github.com/Parallaxer/PhotoBook/pull/10)
+
+### Bug Fixes
+
+- None
+
+# 2.0.1
+
+### Enhancements
+
 - Update to Xcode 8 GM
   [#9](https://github.com/Parallaxer/PhotoBook/pull/9)
 
