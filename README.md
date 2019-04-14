@@ -4,8 +4,8 @@ An example app which showcases the [Parallaxer](https://github.com/Parallaxer/Pa
 ![Parallaxer in action](/../media/Media/demo.gif?raw=true "Parallaxer in action")
 
 ## Requirements
-- Swift 3.0
-- iOS 8+
+- Swift 4.2
+- iOS 9+
 
 ## Installation
 

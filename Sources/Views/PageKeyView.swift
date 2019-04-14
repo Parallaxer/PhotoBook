@@ -1,32 +1,32 @@
 import UIKit
 
-class PageKeyView: UIView {
+final class PageKeyView: UIView {
     
     /// Set the number of pages this key view is capable of representing.
     @IBInspectable var numberOfPages: Int = 3 {
-        didSet { self.buildUI() }
+        didSet { buildUI() }
     }
     
     /// The left-most slider position.
     var leftPosition: CGFloat {
-        return self.outlineContainerView?.subviews.first?.center.x ?? 0
+        return outlineContainerView?.subviews.first?.center.x ?? 0
     }
     
     /// The right-most slider position.
     var rightPosition: CGFloat {
-        return self.outlineContainerView?.subviews.last?.center.x ?? 0
+        return outlineContainerView?.subviews.last?.center.x ?? 0
     }
     
     /// The current slider position.
     var sliderPosition: CGFloat {
-        get { return self.sliderView?.center.x ?? 0 }
-        set { self.sliderView?.center.x = newValue }
+        get { return sliderView?.center.x ?? 0 }
+        set { sliderView?.center.x = newValue }
     }
     
     /// The current slider size.
     var sliderScale: CGFloat {
-        get { return self.sliderView?.transform.a ?? 0 }
-        set { self.sliderView?.transform = CGAffineTransform(scaleX: newValue, y: newValue) }
+        get { return sliderView?.transform.a ?? 0 }
+        set { sliderView?.transform = CGAffineTransform(scaleX: newValue, y: newValue) }
     }
     
     /// Rotation, in radians, of the entire view around the y-axis.
@@ -34,8 +34,8 @@ class PageKeyView: UIView {
         didSet {
             var perspectiveMatrix = CATransform3DIdentity
             perspectiveMatrix.m34 = -1.0 / 200
-            let rotation3D = CATransform3DRotate(perspectiveMatrix, self.rotation, 0, 1, 0)
-            self.containerView?.layer.transform = rotation3D
+            let rotation3D = CATransform3DRotate(perspectiveMatrix, rotation, 0, 1, 0)
+            containerView?.layer.transform = rotation3D
         }
     }
     
@@ -45,21 +45,21 @@ class PageKeyView: UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.buildUI()
+        buildUI()
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        self.containerView?.frame = self.bounds
-        self.outlineContainerView?.frame = self.bounds
+        containerView?.frame = bounds
+        outlineContainerView?.frame = bounds
         
-        let cellWidth = round(self.bounds.width / CGFloat(self.numberOfPages))
-        let circleDiameter = min(cellWidth, self.bounds.height)
+        let cellWidth = round(bounds.width / CGFloat(numberOfPages))
+        let circleDiameter = min(cellWidth, bounds.height)
         let circleRadius = round(circleDiameter / 2)
         let circleSize = CGSize(width: circleDiameter, height: circleDiameter)
-        let centerY = round(self.bounds.height / 2)
-        self.outlineContainerView?.subviews.enumerated().forEach { i, outlineView in
+        let centerY = round(bounds.height / 2)
+        outlineContainerView?.subviews.enumerated().forEach { i, outlineView in
             outlineView.frame.size = circleSize
             outlineView.frame = outlineView.frame.integral
             let centerX = cellWidth * CGFloat(i + 1) - round(cellWidth / 2)
@@ -67,33 +67,34 @@ class PageKeyView: UIView {
             outlineView.layer.cornerRadius = circleRadius
         }
         
-        self.sliderView?.bounds.size = circleSize
-        self.sliderView?.center.y = centerY
-        self.sliderView?.layer.cornerRadius = circleRadius
+        sliderView?.bounds.size = circleSize
+        sliderView?.center.y = centerY
+        sliderView?.layer.cornerRadius = circleRadius
     }
     
     private func buildUI() {
         self.containerView?.removeFromSuperview()
         
         let containerView = UIView()
-        self.addSubview(containerView)
-        self.containerView = containerView
-        
+        addSubview(containerView)
+
         let outlineContainerView = UIView()
-        self.containerView?.addSubview(outlineContainerView)
-        self.outlineContainerView = outlineContainerView
-        
-        for _ in 0 ..< self.numberOfPages {
-            let outlineView = self.createCircleView(true)
-            self.outlineContainerView?.addSubview(outlineView)
+        containerView.addSubview(outlineContainerView)
+
+        for _ in 0 ..< numberOfPages {
+            let outlineView = createCircleView(true)
+            outlineContainerView.addSubview(outlineView)
         }
         
-        let sliderView = self.createCircleView(false)
-        self.containerView?.addSubview(sliderView)
+        let sliderView = createCircleView(false)
+        containerView.addSubview(sliderView)
+
+        self.containerView = containerView
+        self.outlineContainerView = outlineContainerView
         self.sliderView = sliderView
-        
-        self.setNeedsLayout()
-        self.layoutIfNeeded()
+
+        setNeedsLayout()
+        layoutIfNeeded()
     }
     
     private func createCircleView(_ isHollow: Bool) -> UIView {

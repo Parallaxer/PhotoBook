@@ -6,32 +6,32 @@ extension PhotoInfoParallaxing {
     /// interaction on the photo book.
     var showInfoEffect: ParallaxEffect<CGFloat> {
         var controller = ParallaxEffect(
-            over:   ParallaxInterval(from: 0, to: 1),
+            interval: ParallaxInterval(from: 0, to: 1),
             change: { self.photoBookInteractionEnabled = $0 == CGFloat(0) }
         )
-        controller.addEffect(self.fadePhotoBookEffect)
-        controller.addEffect(self.scalePhotoBookEffect)
-        controller.addEffect(self.showPhotoInfoEffect, toSubinterval: ParallaxInterval(from: 0.25, to: 1.0))
+        controller.addEffect(fadePhotoBookEffect)
+        controller.addEffect(scalePhotoBookEffect)
+        controller.addEffect(showPhotoInfoEffect, toSubinterval: ParallaxInterval(from: 0.25, to: 1.0))
         return controller
     }
     
     private var fadePhotoBookEffect: ParallaxEffect<CGFloat> {
         return ParallaxEffect(
-            over:   ParallaxInterval(from: 1, to: 0.75),
+            interval: ParallaxInterval(from: 1, to: 0.75),
             change: { self.photoBookAlpha = $0 }
         )
     }
     
     private var scalePhotoBookEffect: ParallaxEffect<CGFloat> {
         return ParallaxEffect(
-            over:   ParallaxInterval(from: 1, to: 0.9),
+            interval: ParallaxInterval(from: 1, to: 0.9),
             change: { self.photoBookScale = $0 }
         )
     }
     
     private var showPhotoInfoEffect: ParallaxEffect<CGFloat> {
         return ParallaxEffect(
-            over:   ParallaxInterval(from: 0, to: 128),
+            interval: ParallaxInterval(from: 0, to: 128),
             change: { self.photoInfoHeight = $0 }
         )
     }
