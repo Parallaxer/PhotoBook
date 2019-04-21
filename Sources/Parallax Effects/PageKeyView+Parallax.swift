@@ -22,7 +22,7 @@ extension PageKeyView {
     private var shrinkEffect: ParallaxEffect<CGFloat> {
         let numberOfPageTurns = Double(numberOfPages - 1)
         return ParallaxEffect(
-            interval: ParallaxInterval(from: 1, to: 0.6),
+            interval: ParallaxInterval(from: 1, to: 0.4),
             curve: .oscillate(numberOfTimes: numberOfPageTurns),
             isClamped: true,
             change: { self.sliderScale = $0 }

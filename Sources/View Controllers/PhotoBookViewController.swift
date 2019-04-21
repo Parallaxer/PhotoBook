@@ -6,6 +6,7 @@ private let kPhotoBookCellID = "PhotoBookCell"
 final class PhotoBookViewController: UIViewController {
     
     @IBOutlet fileprivate var collectionView: UICollectionView!
+    @IBOutlet fileprivate var infinitePageKeyView: InfinitePageKeyView!
     @IBOutlet fileprivate var pageKeyView: PageKeyView!
     @IBOutlet fileprivate var photoInfoView: PhotoInfoView!
     @IBOutlet fileprivate var photoInfoHeightConstraint: NSLayoutConstraint!
@@ -16,7 +17,8 @@ final class PhotoBookViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        infinitePageKeyView.numberOfPages = photos.count
         pageKeyView.numberOfPages = photos.count
         collectionView.reloadData()
 
@@ -65,6 +67,7 @@ extension PhotoBookViewController: PhotoBookParallaxing {
     }
     
     func willSeedPageChangeEffect(_ pageChangeEffect: inout ParallaxEffect<CGFloat>) {
+        pageChangeEffect.addEffect(infinitePageKeyView.indicateCurrentPage)
         pageChangeEffect.addEffect(pageKeyView.indicateCurrentPage)
     }
     
