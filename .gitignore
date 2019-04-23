@@ -37,7 +37,7 @@ Packages/
 .build/
 
 # CocoaPods
-#Pods/
+Pods/
 
 # Carthage
 Carthage/Checkouts
