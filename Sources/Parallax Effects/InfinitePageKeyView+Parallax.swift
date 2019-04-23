@@ -1,6 +1,32 @@
 import Parallaxer
+import RxSwift
+import RxCocoa
 
 extension InfinitePageKeyView {
+
+    func connect<T: ParallaxTransformable>(pageChangeProgress: Observable<T>) -> [Disposable] {
+        let root = pageChangeProgress
+            .share(replay: 1)
+
+        let slideLeftToCenter = root
+            .normalize(over: ParallaxInterval(from: 0, to: travelRatio))
+            .clampToUnitInterval()
+            .transform(over: ParallaxInterval(from: leftPosition, to: centerPosition))
+            .parallaxValue()
+            .distinctUntilChanged()
+
+        let slideCenterToRight = root
+            .normalize(over: ParallaxInterval(from: (1 - travelRatio), to: 1))
+            .clampToUnitInterval()
+            .transform(over: ParallaxInterval(from: centerPosition, to: rightPosition))
+            .parallaxValue()
+            .distinctUntilChanged()
+
+        return [
+            slideLeftToCenter.subscribe(onNext: { self.sliderPosition = $0 }),
+            slideCenterToRight.subscribe(onNext: { self.sliderPosition = $0 }),
+        ]
+    }
     
     /// Effect which positions, sizes the slider, and rotates the view slightly around the y-axis.
     var indicateCurrentPage: ParallaxEffect<CGFloat> {

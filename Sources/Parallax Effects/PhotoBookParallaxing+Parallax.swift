@@ -2,6 +2,16 @@ import Parallaxer
 import UIKit
 
 extension PhotoBookParallaxing {
+
+    /// The interval over which page changes can occur.
+    var pageChangeInterval: ParallaxInterval<CGFloat> {
+        let numberOfItems = photoBookLayout.numberOfItems
+        let lastItemPosition = photoBookLayout.rectForItem(atIndex: numberOfItems - 1).origin.x
+        return ParallaxInterval(from: 0, to: lastItemPosition)
+    }
+}
+
+extension PhotoBookParallaxing {
     
     /// Parallax effect that follows page changes in the photo book.
     var pageChangeEffect: ParallaxEffect<CGFloat> {

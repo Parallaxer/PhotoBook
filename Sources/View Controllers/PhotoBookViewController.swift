@@ -1,5 +1,7 @@
 import Parallaxer
 import UIKit
+import RxSwift
+import RxCocoa
 
 private let kPhotoBookCellID = "PhotoBookCell"
 
@@ -14,6 +16,8 @@ final class PhotoBookViewController: UIViewController {
     var photoInfoInteraction: ClosureBasedScrollView?
     
     fileprivate let photos = PhotoInfo.defaultPhotos
+
+    private var disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +27,8 @@ final class PhotoBookViewController: UIViewController {
         collectionView.reloadData()
 
         preparePhotoInfoInteraction()
+
+        bindObservables()
     }
     
     override var prefersStatusBarHidden: Bool {
@@ -34,6 +40,24 @@ final class PhotoBookViewController: UIViewController {
         
         updatePhotoInfoParallax()
         updatePhotoBookParallax()
+    }
+
+    private func bindObservables() {
+        let viewController = Observable.just(self)
+        let pageChange = collectionView.rx.contentOffset
+            .map { $0.x }
+
+        let together = Observable.combineLatest(viewController, pageChange)
+            .flatMap { (arg) -> Observable<ParallaxProgress<CGFloat>> in
+                let (viewController, pageChange) = arg
+                let interval = viewController.pageChangeInterval
+                return Observable.just(pageChange)
+                    .asParallaxObservable(over: interval)
+            }
+
+
+        infinitePageKeyView.connect(pageChangeProgress: together)
+            .forEach { $0.disposed(by: disposeBag) }
     }
 }
 
@@ -67,7 +91,6 @@ extension PhotoBookViewController: PhotoBookParallaxing {
     }
     
     func willSeedPageChangeEffect(_ pageChangeEffect: inout ParallaxEffect<CGFloat>) {
-        pageChangeEffect.addEffect(infinitePageKeyView.indicateCurrentPage)
         pageChangeEffect.addEffect(pageKeyView.indicateCurrentPage)
     }
     
