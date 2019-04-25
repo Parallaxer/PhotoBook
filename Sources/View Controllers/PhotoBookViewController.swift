@@ -57,7 +57,7 @@ final class PhotoBookViewController: UIViewController {
 
 
         infinitePageKeyView.connect(pageChangeProgress: together)
-            .forEach { $0.disposed(by: disposeBag) }
+            .disposed(by: disposeBag)
     }
 }
 
