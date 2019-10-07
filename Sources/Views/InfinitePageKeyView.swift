@@ -15,26 +15,64 @@ extension CGRect {
     }
 }
 
+let randomColors = [
+    UIColor.red,
+    UIColor.gray,
+    UIColor.green,
+    UIColor.blue,
+    UIColor.purple,
+    UIColor.yellow,
+    UIColor.magenta,
+    UIColor.brown
+]
+
+final class CircleView: UIView {
+
+    /// The circle's scale transform.
+    var scaleTransform: CGAffineTransform = .identity {
+        didSet { updateTransform() }
+    }
+
+    /// The circle's translation transform.
+    var translationTransform: CGAffineTransform = .identity {
+        didSet { updateTransform() }
+    }
+
+    private func updateTransform() {
+        transform = scaleTransform.concatenating(translationTransform)
+    }
+}
+
 //------------------------------------------------------------------------------------------------------------
 //  Infinite animation. Each line below shows a state change that occurs as the user scrolls.
 //     (0, 1, 2, 3, 4, 5, 6, 7, 8, 9)   - all elements (numberOfPages: 10)
-//     [0, 1, 2, 3, 4]...               - visible elements (numberOfVisiblePages: 5)
+//     [0, 1, 2, 3, 4]...               - visible elements (numberOfCircles: 5)
 //      ^                               - cursor position
 //         ^
 //            ^
-//     [0, 1, 2, 3, 4]...
 //    .[1, 2, 3, 4, 5]...
 //   ..[2, 3, 4, 5, 6]...
 //  ...[3, 4, 5, 6, 7]..
 //  ...[4, 5, 6, 7, 8].
 //  ...[5, 6, 7, 8, 9]
-//            ^
 //               ^
 //                  ^
 //------------------------------------------------------------------------------------------------------------
 //  Travel ratio: at the edges of the list
 //     (0, 1, 2, 3, 4, 5, 6, 7, 8, 9)   - all elements
 //     {0, 1, 2}            {7, 8, 9}   - edge elements where cursor position changes.
+//------------------------------------------------------------------------------------------------------------
+// Wrapping behavior:
+//     ...|0 1 2 3 4|...            - visible indices (numberOfCircles: 5)
+//       ...|1 2 3 4 0|...
+//         ...|2 3 4 0 1|...
+//           ...|3 4 0 1 2|...
+//             ...|4 0 1 2 3|...
+//               ...|0 1 2 3 4|...
+//
+//  TravelWidth = numberOfCircles * CircleWidth
+//  NumWraps(i) = (Travel / circleWidth) * (numberOfCircles - i)
+//  MidX(i) = (Travel * circleWidth) % numberOfCircles
 final class InfinitePageKeyView: UIView {
     
     /// Set the number of pages this key view is capable of representing.
@@ -43,33 +81,11 @@ final class InfinitePageKeyView: UIView {
     }
 
     var numberOfCircles: Int = 7 {
-        didSet {
-            if numberOfCircles.isEven {
-                fatalError(
-                    """
-                    For the sake of visual symmetry, numberOfVisiblePages must be an odd number. Received
-                    \(numberOfCircles).
-                    """)
-            }
-            buildUI()
-        }
-    }
-
-    var slidingWindowCount: Int = 3 {
-        didSet {
-            if slidingWindowCount.isEven {
-                fatalError(
-                    """
-                    For the sake of visual symmetry, slidingWindowCount must be an odd number. Received
-                    \(slidingWindowCount).
-                    """)
-            }
-            buildUI()
-        }
+        didSet { buildUI() }
     }
 
     var stepDistance: CGFloat {
-        return round(bounds.width / CGFloat(numberOfCircles))
+        return floor(bounds.width / CGFloat(numberOfCircles))
     }
 
     /// Distance the container has traveled.
@@ -80,56 +96,47 @@ final class InfinitePageKeyView: UIView {
         }
     }
 
+    var numberOfTravelSteps: Int {
+        return max(numberOfPages - numberOfCircles, 0)
+    }
+
     var travelRatio: Double {
-        guard let count = circleContainerView?.subviews.count, count > 0 else {
-            return 1
-        }
-
-        let ratio = (floor(Double(count) / 2) / Double(numberOfPages - 1))
-        guard ratio < 0.5 else {
-            return 1
-        }
-
-        return ratio
+        return 1 / floor(Double(numberOfCircles) / 2)
     }
 
     /// The center cursor location.
     var centerPosition: CGFloat {
-        return circleContainerView?.bounds.midX ?? 0
+        return leftPosition + (floor(CGFloat(numberOfCircles) / 2) * stepDistance)
     }
     
     /// The left-most cursor position.
     var leftPosition: CGFloat {
-        guard let bounds = circleContainerView?.bounds else {
-            return 0
-        }
-        return bounds.minX + (stepDistance / 2)
+        return circleContainerView?.bounds.minX ?? 0
     }
     
     /// The right-most cursor position.
     var rightPosition: CGFloat {
-        guard let bounds = circleContainerView?.bounds else {
-            return 0
-        }
-        return bounds.maxX - (stepDistance / 2)
+        return leftPosition + ceil(CGFloat(numberOfCircles - 1) * stepDistance)
     }
 
     /// The current cursor position.
-    var cursorPosition: CGFloat {
-        get { return cursorView?.center.x ?? 0 }
-        set { cursorView?.center.x = newValue }
+    var cursorPosition: CGFloat = 0.0 {
+        didSet { updateCursor() }
     }
     
     /// The current cursor size.
-    var cursorScale: CGFloat {
-        get { return cursorView?.transform.a ?? 0 }
-        set { cursorView?.transform = CGAffineTransform(scaleX: newValue, y: newValue) }
+    var cursorScale: CGFloat = 1 {
+        didSet { updateCursor() }
+    }
+
+    func updateCursor() {
+        let scale = CGAffineTransform(scaleX: cursorScale, y: cursorScale)
+        let translation = CGAffineTransform(translationX: cursorPosition, y: 0)
+        cursorView?.transform = scale.concatenating(translation)
     }
 
     /// All circle views, excluding the cursor.
-    var circleViews: [UIView] {
-        return circleContainerView?.subviews ?? []
-    }
+    private(set) var circleViews: [CircleView] = []
 
     private weak var cursorView: UIView?
     private weak var travelView: UIView?
@@ -142,28 +149,29 @@ final class InfinitePageKeyView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
+
+        let viewCenter = bounds.center
+
         travelView?.bounds = bounds
-        travelView?.center = CGPoint(x: bounds.midX, y: bounds.midY)
+        travelView?.center = viewCenter
 
         circleContainerView?.bounds = bounds
-        circleContainerView?.center = bounds.center
+        circleContainerView?.center = viewCenter
         
-        let cellWidth = round(bounds.width / CGFloat(numberOfCircles))
-        let circleDiameter = min(cellWidth, bounds.height)
-        let circleRadius = round(circleDiameter / 2)
+        let circleDiameter = stepDistance
+        let circleRadius = floor(circleDiameter / 2)
+
         let circleSize = CGSize(width: circleDiameter, height: circleDiameter)
-        let centerY = round(bounds.height / 2)
+        let circleCenter = CGPoint(x: circleRadius, y: viewCenter.y)
         circleContainerView?.subviews.enumerated().forEach { i, circleView in
             circleView.bounds.size = circleSize
+            circleView.center = circleCenter
             circleView.bounds = circleView.bounds.integral
-            let centerX = cellWidth * CGFloat(i + 1) - round(cellWidth / 2)
-            circleView.center = CGPoint(x: centerX, y: centerY)
             circleView.layer.cornerRadius = circleRadius
         }
         
         cursorView?.bounds.size = circleSize
-        cursorView?.center.y = centerY
+        cursorView?.center = circleCenter
         cursorView?.layer.cornerRadius = circleRadius
     }
 
@@ -197,12 +205,14 @@ final class InfinitePageKeyView: UIView {
         let circleContainerView = UIView()
         travelView.addSubview(circleContainerView)
 
-        for _ in 0 ..< numberOfCircles {
-            let circleView = createCircleView(true)
+        circleViews = (0 ..< numberOfCircles).map { _ in
+            let circleView = createCircleView(isHollow: true)
             circleContainerView.addSubview(circleView)
+//            circleView.backgroundColor = randomColors.randomElement()
+            return circleView
         }
-        
-        let cursorView = createCircleView(false)
+
+        let cursorView = createCircleView(isHollow: false)
         addSubview(cursorView)
 
         self.travelView = travelView
@@ -211,10 +221,13 @@ final class InfinitePageKeyView: UIView {
 
         setNeedsLayout()
         layoutIfNeeded()
+
+//        self.backgroundColor = UIColor(red: 0, green: 0, blue: 1, alpha: 0.5)
+//        travelView.backgroundColor = UIColor(red: 0, green: 1, blue: 0, alpha: 0.5)
     }
     
-    private func createCircleView(_ isHollow: Bool) -> UIView {
-        let view = UIView()
+    private func createCircleView(isHollow: Bool) -> CircleView {
+        let view = CircleView()
         view.backgroundColor = isHollow ? UIColor.init(white: 1, alpha: 0.5) : UIColor.white
         return view
     }
