@@ -5,15 +5,16 @@ import RxCocoa
 
 private let kPhotoBookCellID = "PhotoBookCell"
 
-final class PhotoBookViewController: UIViewController {
+final class PhotoBookViewController: UIViewController, UICollectionViewDelegate {
     
     @IBOutlet fileprivate var collectionView: UICollectionView!
     @IBOutlet fileprivate var infinitePageKeyView: InfinitePageKeyView!
+    @IBOutlet fileprivate var infinitePageView: InfinitePageView!
     @IBOutlet fileprivate var pageKeyView: PageKeyView!
     @IBOutlet fileprivate var photoInfoView: PhotoInfoView!
     @IBOutlet fileprivate var photoInfoHeightConstraint: NSLayoutConstraint!
     
-    var photoInfoInteraction: ClosureBasedScrollView?
+    var photoInfoInteraction: UIScrollView?
     
     fileprivate let photos = PhotoInfo.defaultPhotos
 
@@ -22,6 +23,7 @@ final class PhotoBookViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        infinitePageView.numberOfPages = photos.count
         infinitePageKeyView.numberOfPages = photos.count
         pageKeyView.numberOfPages = photos.count
         collectionView.reloadData()
@@ -34,29 +36,27 @@ final class PhotoBookViewController: UIViewController {
     override var prefersStatusBarHidden: Bool {
         return true
     }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        updatePhotoInfoParallax()
-        updatePhotoBookParallax()
-    }
 
     private func bindObservables() {
-        let viewController = Observable.just(self)
-        let pageChange = collectionView.rx.contentOffset
-            .map { $0.x }
+        let scrollingTransform = photoBookScrollingTransform
+            .share(replay: 1)
+        
+        visiblePhotoIndex
+            .drive(onNext: { [unowned self] index in
+                self.photoInfoView.populate(withPhotoInfo: self.photos[index])
+            })
+            .disposed(by: disposeBag)
 
-        let together = Observable.combineLatest(viewController, pageChange)
-            .flatMap { (arg) -> Observable<ParallaxProgress<CGFloat>> in
-                let (viewController, pageChange) = arg
-                let interval = viewController.pageChangeInterval
-                return Observable.just(pageChange)
-                    .asParallaxObservable(over: interval)
-            }
+        bindPhotoInfoParallax()
+            .disposed(by: disposeBag)
 
+        pageKeyView.bindPageKeyParallax(with: scrollingTransform)
+            .disposed(by: disposeBag)
 
-        infinitePageKeyView.connect(pageChangeProgress: together)
+        infinitePageKeyView.bindPageKeyParallax(with: scrollingTransform)
+            .disposed(by: disposeBag)
+
+        infinitePageView.bindScrollingTransform(scrollingTransform)
             .disposed(by: disposeBag)
     }
 }
@@ -85,17 +85,13 @@ extension PhotoBookViewController: PhotoInfoParallaxing {
 }
 
 extension PhotoBookViewController: PhotoBookParallaxing {
+
+    var photoBookCollectionView: UICollectionView {
+        return collectionView
+    }
     
     var photoBookLayout: PhotoBookCollectionViewLayout {
         return collectionView.collectionViewLayout as! PhotoBookCollectionViewLayout
-    }
-    
-    func willSeedPageChangeEffect(_ pageChangeEffect: inout ParallaxEffect<CGFloat>) {
-        pageChangeEffect.addEffect(pageKeyView.indicateCurrentPage)
-    }
-    
-    func didShowPhoto(atIndex index: Int) {
-        photoInfoView.populate(withPhotoInfo: photos[index])
     }
 }
 
@@ -109,14 +105,13 @@ extension PhotoBookViewController: UICollectionViewDataSource {
         -> UICollectionViewCell
     {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: kPhotoBookCellID, for: indexPath)
-        (cell as? PhotoBookCollectionViewCell)?.image = photos[indexPath.row].image
-        return cell
-    }
-}
+            as! PhotoBookCollectionViewCell
 
-extension PhotoBookViewController: UICollectionViewDelegate {
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        updatePhotoBookParallax()
+        cell.image = photos[indexPath.row].image
+
+        bindPagingParallax(to: cell, at: indexPath)
+            .disposed(by: cell.disposeBag)
+
+        return cell
     }
 }

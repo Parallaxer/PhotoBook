@@ -53,7 +53,7 @@ final class PageKeyView: UIView {
         
         containerView?.frame = bounds
         outlineContainerView?.frame = bounds
-        
+
         let cellWidth = round(bounds.width / CGFloat(numberOfPages))
         let circleDiameter = min(cellWidth, bounds.height)
         let circleRadius = round(circleDiameter / 2)

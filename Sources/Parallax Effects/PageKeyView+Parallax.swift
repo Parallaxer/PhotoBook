@@ -1,39 +1,60 @@
 import Parallaxer
+import RxSwift
 
 extension PageKeyView {
-    
-    /// Effect which positions, sizes the slider, and rotates the view slightly around the y-axis.
-    var indicateCurrentPage: ParallaxEffect<CGFloat> {
-        var effect = ParallaxEffect<CGFloat>(interval: ParallaxInterval(from: 0, to: 1))
-        effect.addEffect(slideEffect)
-        effect.addEffect(shrinkEffect)
-        effect.addEffect(rotateEffect)
-        return effect
+
+    func bindPageKeyParallax(
+        with scrollingTransform: Observable<ParallaxTransform<CGFloat>>)
+        -> Disposable
+    {
+        let normalizedScrollingTransform = scrollingTransform
+            .parallaxScale(to: .interval(from: CGFloat(0), to: 1))
+
+        return Disposables.create([
+            bindSlideEffect(with: normalizedScrollingTransform),
+            bindShrinkEffect(with: normalizedScrollingTransform),
+            bindRotateEffect(with: normalizedScrollingTransform)
+        ])
     }
-    
-    private var slideEffect: ParallaxEffect<CGFloat> {
-        return ParallaxEffect(
-            interval: ParallaxInterval(from: leftPosition, to: rightPosition),
-            isClamped: true,
-            change: { self.sliderPosition = $0 }
-        )
+
+    private func bindSlideEffect(
+        with scrollingTransform: Observable<ParallaxTransform<CGFloat>>)
+        -> Disposable
+    {
+        return scrollingTransform
+            .parallaxReposition(with: .just(.clampToUnitInterval))
+            .parallaxScale(to: .interval(from: leftPosition, to: rightPosition))
+            .parallaxValue()
+            .subscribe(onNext: { [weak self] position in
+                self?.sliderPosition = position
+            })
     }
-    
-    private var shrinkEffect: ParallaxEffect<CGFloat> {
+
+    private func bindShrinkEffect(
+        with scrollingTransform: Observable<ParallaxTransform<CGFloat>>)
+        -> Disposable
+    {
         let numberOfPageTurns = Double(numberOfPages - 1)
-        return ParallaxEffect(
-            interval: ParallaxInterval(from: 1, to: 0.4),
-            curve: .oscillate(numberOfTimes: numberOfPageTurns),
-            isClamped: true,
-            change: { self.sliderScale = $0 }
-        )
+        return scrollingTransform
+            .parallaxReposition(with: .just(.clampToUnitInterval))
+            .parallaxReposition(with: .just(.oscillate(numberOfTimes: numberOfPageTurns)))
+            .parallaxScale(to: .interval(from: 1, to: 0.4))
+            .parallaxValue()
+            .subscribe(onNext: { [weak self] scale in
+                self?.sliderScale = scale
+            })
     }
-    
-    private var rotateEffect: ParallaxEffect<CGFloat> {
+
+    private func bindRotateEffect(
+        with scrollingTransform: Observable<ParallaxTransform<CGFloat>>)
+        -> Disposable
+    {
         let rotateAmount = CGFloat.pi / 5
-        return ParallaxEffect(
-            interval: ParallaxInterval(from: rotateAmount, to: -rotateAmount),
-            change: { self.rotation = $0 }
-        )
+        return scrollingTransform
+            .parallaxScale(to: .interval(from: rotateAmount, to: -rotateAmount))
+            .parallaxValue()
+            .subscribe(onNext: { [weak self] rotation in
+                self?.rotation = rotation
+            })
     }
 }

@@ -1,31 +1,43 @@
 import Parallaxer
 import RxSwift
-import RxCocoa
+import RxSwiftExt
 
 extension InfinitePageKeyView {
 
-    func connect<T: ParallaxTransformable>(pageChangeProgress: Observable<T>) -> Disposable {
-        let root = pageChangeProgress
+    func bindPageKeyParallax(
+        with scrollingTransform: Observable<ParallaxTransform<CGFloat>>)
+        -> Disposable
+    {
+        let normalizedScrollingTransform = scrollingTransform
+            // Normalize.
+            .parallaxScale(to: .interval(from: Double(0), to: 1))
             .share(replay: 1)
 
         return Disposables.create([
-            travelViewEffect(root: root),
-            cursorViewEffect(root: root),
-            circleViewEffect(root: root),
+            bindCursorViewEffect(with: normalizedScrollingTransform),
+            bindTravelEffect(with: scrollingTransform.map { _ in () }),
+            bindTravelViewEffect(with: normalizedScrollingTransform)
         ])
     }
 }
 
 extension InfinitePageKeyView {
 
-    fileprivate func circleViewEffect<T: ParallaxTransformable>(root: Observable<T>) -> Disposable {
+    fileprivate func bindTravelEffect(
+        with didChange: Observable<Void>)
+        -> Disposable
+    {
         let minStepDistanceSq = pow(stepDistance, 2)
-        let maxStepDistanceSq = pow(stepDistance * CGFloat(numberOfCircles / 2), 2)
+        let maxStepDistanceSq = pow(stepDistance * CGFloat(numberOfCircles), 2)
+//        let maxStepDistanceSq = pow(stepDistance * CGFloat(numberOfCircles / 2), 2)
         let disposables: [Disposable] = circleViews.map { circleView in
-            let circleRoot = root.withLatestFrom(Observable.just(circleView))
-                .map(self.distanceSquaredFromCursor(for:))
-                .asParallaxObservable(over: ParallaxInterval(from: minStepDistanceSq, to: maxStepDistanceSq))
-                .clampToUnitInterval()
+            let circleRoot = didChange
+                .filterMap { [weak self] _ -> FilterMap<CGFloat> in
+                    guard let self = self else { return .ignore }
+                    return .map(self.distanceSquaredFromCursor(for: circleView))
+                }
+                .parallax(over: .interval(from: CGFloat(minStepDistanceSq), to: maxStepDistanceSq))
+                .parallaxReposition(with: .just(.clampToUnitInterval))
                 .share(replay: 1)
 
             return Disposables.create([
@@ -37,56 +49,66 @@ extension InfinitePageKeyView {
         return Disposables.create(disposables)
     }
 
-//    private func alphaEffect<T: ParallaxTransformable>(circleRoot: Observable<T>, circleView: CircleView)
-//        -> Disposable
-//    {
-//        let alpha = circleRoot
-//            .transform(with: .easeInOut)
-//            .transform(over: ParallaxInterval<CGFloat>(from: 1, to: 0))
-//            .parallaxValue()
-//
-//        return alpha.subscribe(onNext: { circleView.alpha = $0 })
-//    }
-
-    private func scaleEffect<T: ParallaxTransformable>(circleRoot: Observable<T>, circleView: CircleView)
+    private func alphaEffect(
+        circleRoot: Observable<ParallaxTransform<CGFloat>>,
+        circleView: CircleView)
         -> Disposable
     {
-        let scale = circleRoot
-            .transform(over: ParallaxInterval<CGFloat>(from: 1, to: 0.05))
-            .transform(with: .custom({ $0 / 2}))
+        let alpha = circleRoot
+            .parallaxReposition(with: .just(.easeInOut))
+            .parallaxScale(to: .interval(from: CGFloat(1), to: 0))
             .parallaxValue()
 
-        return scale.subscribe(onNext: { circleView.scaleTransform = CGAffineTransform(scaleX: $0, y: $0) })
+        return alpha.subscribe(onNext: { alpha in
+            circleView.alpha = alpha
+        })
+    }
+
+    private func scaleEffect(
+        circleRoot: Observable<ParallaxTransform<CGFloat>>,
+        circleView: CircleView)
+        -> Disposable
+    {
+        return circleRoot
+            .parallaxScale(to: .interval(from: 1, to: 0.05))
+            .parallaxReposition(with: .just(.custom({ $0 / 2})))
+            .parallaxValue()
+            .subscribe(onNext: { scale in
+                circleView.scaleTransform = CGAffineTransform(scaleX: scale, y: scale)
+            })
     }
 }
 
 extension InfinitePageKeyView {
 
-    fileprivate func cursorViewEffect<T: ParallaxTransformable>(root: Observable<T>) -> Disposable {
+    fileprivate func bindCursorViewEffect(
+        with scrollingTransform: Observable<ParallaxTransform<Double>>)
+        -> Disposable
+    {
         return Disposables.create([
-            slideEffect(root: root),
-            shrinkEffect(root: root)
+            slideEffect(scrollingTransform: scrollingTransform),
+            shrinkEffect(scrollingTransform: scrollingTransform)
         ])
     }
 
-    private func slideEffect<T: ParallaxTransformable>(root: Observable<T>) -> Disposable {
+    private func slideEffect(scrollingTransform: Observable<ParallaxTransform<Double>>) -> Disposable {
         let travelRatio = self.travelRatio
-        let slideFromLeftToCenter = root
-            .normalize(over: ParallaxInterval(from: 0, to: travelRatio))
-            .clampToUnitInterval()
-            .transform(over: ParallaxInterval(from: leftPosition, to: centerPosition))
+        let slideFromLeftToCenter = scrollingTransform
+            .parallaxFocus(subinterval: .interval(from: 0, to: travelRatio))
+            .parallaxReposition(with: .just(.clampToUnitInterval))
+            .parallaxScale(to: .interval(from: leftPosition, to: centerPosition))
             .parallaxValue()
             .distinctUntilChanged()
-            .debug("slideFromLeftToCenter", trimOutput: true)
+//            .debug("slideFromLeftToCenter", trimOutput: true)
 
-        let slideFromCenterToRight = root
-            .normalize(over: ParallaxInterval(from: (1 - travelRatio), to: 1))
-            .clampToUnitInterval()
-            .transform(over: ParallaxInterval(from: centerPosition, to: rightPosition))
+        let slideFromCenterToRight = scrollingTransform
+            .parallaxFocus(subinterval: .interval(from: (1 - travelRatio), to: 1))
+            .parallaxReposition(with: .just(.clampToUnitInterval))
+            .parallaxScale(to: .interval(from: centerPosition, to: rightPosition))
             .parallaxValue()
             .distinctUntilChanged()
             .skip(1)
-            .debug("slideFromCenterToRight", trimOutput: true)
+//            .debug("slideFromCenterToRight", trimOutput: true)
 
         return Disposables.create([
             slideFromLeftToCenter.subscribe(onNext: { self.cursorPosition = $0 }),
@@ -94,13 +116,13 @@ extension InfinitePageKeyView {
         ])
     }
 
-    private func shrinkEffect<T: ParallaxTransformable>(root: Observable<T>) -> Disposable {
+    private func shrinkEffect(scrollingTransform: Observable<ParallaxTransform<Double>>) -> Disposable {
         let numberOfPageTurns = Double(numberOfPages - 1)
-        let shrink = root
-            .clampToUnitInterval()
-            .transform(with: .oscillate(numberOfTimes: numberOfPageTurns))
-            .clampToUnitInterval()
-            .transform(over: ParallaxInterval<CGFloat>(from: 1, to: 0.4))
+        let shrink = scrollingTransform
+            .parallaxReposition(with: .just(.clampToUnitInterval))
+            .parallaxReposition(with: .just(.oscillate(numberOfTimes: numberOfPageTurns)))
+            .parallaxReposition(with: .just(.clampToUnitInterval))
+            .parallaxScale(to: .interval(from: CGFloat(1), to: 0.4))
             .parallaxValue()
 
         return shrink.subscribe(onNext: { self.cursorScale = $0 })
@@ -109,24 +131,30 @@ extension InfinitePageKeyView {
 
 extension InfinitePageKeyView {
 
-    fileprivate func travelViewEffect<T: ParallaxTransformable>(root: Observable<T>) -> Disposable {
+    fileprivate func bindTravelViewEffect(
+        with scrollingTransform: Observable<ParallaxTransform<Double>>)
+        -> Disposable
+    {
         let travelRatio = self.travelRatio
-        let travelRoot = root
-            .normalize(over: ParallaxInterval(from: travelRatio, to: (1 - travelRatio)))
-            .clampToUnitInterval()
+        let travelTransform = scrollingTransform
+            .parallaxFocus(subinterval: .interval(from: travelRatio, to: (1 - travelRatio)))
+            .parallaxReposition(with: .just(.clampToUnitInterval))
             .share(replay: 1)
 
         return Disposables.create([
-            travelSteps(travelRoot: travelRoot),
-            wrapCircles(travelRoot: travelRoot)
+            travelSteps(with: travelTransform),
+            wrapCircles(with: travelTransform)
         ])
     }
 
-    private func travelSteps<T: ParallaxTransformable>(travelRoot: Observable<T>) -> Disposable {
+    private func travelSteps(
+        with travelTransform: Observable<ParallaxTransform<Double>>)
+        -> Disposable
+    {
         let numberOfTravelSteps = CGFloat(self.numberOfTravelSteps)
-        let travelSteps = travelRoot
-            .transform(over: ParallaxInterval<CGFloat>(from: 0, to: stepDistance * numberOfTravelSteps))
-            .clampToUnitInterval()
+        let travelSteps = travelTransform
+            .parallaxScale(to: .interval(from: 0, to: stepDistance * numberOfTravelSteps))
+            .parallaxReposition(with: .just(.clampToUnitInterval))
             .parallaxValue()
 
         return travelSteps.subscribe(onNext: { (value) in
@@ -134,23 +162,24 @@ extension InfinitePageKeyView {
         })
     }
 
-    private func wrapCircles<T: ParallaxTransformable>(travelRoot: Observable<T>) -> Disposable {
+    private func wrapCircles(
+        with travelTransform: Observable<ParallaxTransform<Double>>)
+        -> Disposable
+    {
         let numberOfCircles = self.numberOfCircles
         let numberOfTravelSteps = self.numberOfTravelSteps
         let circleOffsetsByStep = InfinitePageKeyView.calculateCircleOffsetTable(
             numberOfTravelSteps: numberOfTravelSteps + 1, // Account for the first (index 0) step.
             numberOfCircles: numberOfCircles)
 
-
         let stepDistance = self.stepDistance
-        let wrapRoot = travelRoot
-            .transform(over: ParallaxInterval<CGFloat>(from: 0, to: CGFloat(numberOfTravelSteps)))
-            .clampToUnitInterval()
+        let wrapRoot = travelTransform
+            .parallaxScale(to: .interval(from: 0, to: CGFloat(numberOfTravelSteps)))
+            .parallaxReposition(with: .just(.clampToUnitInterval))
             .parallaxValue()
             .map(round)
             .map(Int.init)
             .share(replay: 1)
-//            .debug("wrapRoot", trimOutput: true)
 
         let disposables: [Disposable] = circleViews.enumerated().map { circleIndex, circleView in
             return wrapRoot

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2CC965A2230C4FC14D17F6E0 /* Pods_PhotoBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74442D920342C7187A2284C9 /* Pods_PhotoBook.framework */; };
+		8401EC072357D4CA006E5D60 /* InfinitePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8401EC062357D4CA006E5D60 /* InfinitePageView.swift */; };
+		8401EC09235BCC2D006E5D60 /* InfinitePageView+CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8401EC08235BCC2D006E5D60 /* InfinitePageView+CircleView.swift */; };
 		842375D5226BE1C2009572DC /* InfinitePageKeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842375D4226BE1C2009572DC /* InfinitePageKeyView.swift */; };
 		842375D7226BE612009572DC /* InfinitePageKeyView+Parallax.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842375D6226BE612009572DC /* InfinitePageKeyView+Parallax.swift */; };
 		AF0D585C1D498A6D00FB6E5E /* PhotoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0D58501D498A6D00FB6E5E /* PhotoInfo.swift */; };
@@ -20,9 +22,6 @@
 		AF28B33F1D5135CF004CE62E /* PhotoBookCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF28B33E1D5135CF004CE62E /* PhotoBookCollectionViewCell.swift */; };
 		AF2AE68F1D511F9A00037F2F /* PhotoBookCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2AE68E1D511F9A00037F2F /* PhotoBookCollectionViewLayout.swift */; };
 		AF6F097E1D49ECC80028992A /* PhotoInfoParallaxing.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6F097D1D49ECC80028992A /* PhotoInfoParallaxing.swift */; };
-		AF6F09801D49F2460028992A /* PhotoInfoParallaxing+Parallax.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6F097F1D49F2460028992A /* PhotoInfoParallaxing+Parallax.swift */; };
-		AFA181A31D49BBBF0026C2FB /* ClosureBasedScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA181A21D49BBBF0026C2FB /* ClosureBasedScrollView.swift */; };
-		AFAD01A71D513F8900A8EE48 /* PhotoBookParallaxing+Parallax.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFAD01A61D513F8900A8EE48 /* PhotoBookParallaxing+Parallax.swift */; };
 		AFD6F16A1D47F99400F18036 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AFD6F1591D47F99400F18036 /* Assets.xcassets */; };
 		AFD6F16B1D47F99400F18036 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFD6F15A1D47F99400F18036 /* LaunchScreen.storyboard */; };
 		AFD6F16C1D47F99400F18036 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFD6F15C1D47F99400F18036 /* Main.storyboard */; };
@@ -32,6 +31,8 @@
 /* Begin PBXFileReference section */
 		71E42CA57E1D4D3026E3436E /* Pods-PhotoBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoBook.release.xcconfig"; path = "Pods/Target Support Files/Pods-PhotoBook/Pods-PhotoBook.release.xcconfig"; sourceTree = "<group>"; };
 		74442D920342C7187A2284C9 /* Pods_PhotoBook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PhotoBook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8401EC062357D4CA006E5D60 /* InfinitePageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfinitePageView.swift; sourceTree = "<group>"; };
+		8401EC08235BCC2D006E5D60 /* InfinitePageView+CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "InfinitePageView+CircleView.swift"; sourceTree = "<group>"; };
 		842375D4226BE1C2009572DC /* InfinitePageKeyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfinitePageKeyView.swift; sourceTree = "<group>"; };
 		842375D6226BE612009572DC /* InfinitePageKeyView+Parallax.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "InfinitePageKeyView+Parallax.swift"; sourceTree = "<group>"; };
 		8F2124EBF64BB9101AE05257 /* Pods-PhotoBook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoBook.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PhotoBook/Pods-PhotoBook.debug.xcconfig"; sourceTree = "<group>"; };
@@ -48,9 +49,6 @@
 		AF28B33E1D5135CF004CE62E /* PhotoBookCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBookCollectionViewCell.swift; sourceTree = "<group>"; };
 		AF2AE68E1D511F9A00037F2F /* PhotoBookCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBookCollectionViewLayout.swift; sourceTree = "<group>"; };
 		AF6F097D1D49ECC80028992A /* PhotoInfoParallaxing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoInfoParallaxing.swift; sourceTree = "<group>"; };
-		AF6F097F1D49F2460028992A /* PhotoInfoParallaxing+Parallax.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhotoInfoParallaxing+Parallax.swift"; sourceTree = "<group>"; };
-		AFA181A21D49BBBF0026C2FB /* ClosureBasedScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClosureBasedScrollView.swift; path = "../View Controllers/ClosureBasedScrollView.swift"; sourceTree = "<group>"; };
-		AFAD01A61D513F8900A8EE48 /* PhotoBookParallaxing+Parallax.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhotoBookParallaxing+Parallax.swift"; sourceTree = "<group>"; };
 		AFB18E6B1D552BA6007534A5 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		AFD6F1591D47F99400F18036 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AFD6F15B1D47F99400F18036 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -84,8 +82,6 @@
 			children = (
 				AF0D58521D498A6D00FB6E5E /* PageKeyView+Parallax.swift */,
 				842375D6226BE612009572DC /* InfinitePageKeyView+Parallax.swift */,
-				AF6F097F1D49F2460028992A /* PhotoInfoParallaxing+Parallax.swift */,
-				AFAD01A61D513F8900A8EE48 /* PhotoBookParallaxing+Parallax.swift */,
 			);
 			path = "Parallax Effects";
 			sourceTree = "<group>";
@@ -101,9 +97,10 @@
 		AF0D58571D498A6D00FB6E5E /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				AFA181A21D49BBBF0026C2FB /* ClosureBasedScrollView.swift */,
 				AF0D58581D498A6D00FB6E5E /* PageKeyView.swift */,
 				842375D4226BE1C2009572DC /* InfinitePageKeyView.swift */,
+				8401EC08235BCC2D006E5D60 /* InfinitePageView+CircleView.swift */,
+				8401EC062357D4CA006E5D60 /* InfinitePageView.swift */,
 				AF28B33E1D5135CF004CE62E /* PhotoBookCollectionViewCell.swift */,
 				AF2AE68E1D511F9A00037F2F /* PhotoBookCollectionViewLayout.swift */,
 				AF0D585B1D498A6D00FB6E5E /* PhotoInfoView.swift */,
@@ -288,6 +285,7 @@
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -295,6 +293,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -308,20 +307,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8401EC072357D4CA006E5D60 /* InfinitePageView.swift in Sources */,
 				AF0D585C1D498A6D00FB6E5E /* PhotoInfo.swift in Sources */,
 				842375D5226BE1C2009572DC /* InfinitePageKeyView.swift in Sources */,
-				AFA181A31D49BBBF0026C2FB /* ClosureBasedScrollView.swift in Sources */,
 				AF6F097E1D49ECC80028992A /* PhotoInfoParallaxing.swift in Sources */,
 				AF28B33D1D5132E4004CE62E /* PhotoBookViewController.swift in Sources */,
 				AFD6F16E1D47F99400F18036 /* AppDelegate.swift in Sources */,
 				842375D7226BE612009572DC /* InfinitePageKeyView+Parallax.swift in Sources */,
 				AF28B33F1D5135CF004CE62E /* PhotoBookCollectionViewCell.swift in Sources */,
-				AF6F09801D49F2460028992A /* PhotoInfoParallaxing+Parallax.swift in Sources */,
-				AFAD01A71D513F8900A8EE48 /* PhotoBookParallaxing+Parallax.swift in Sources */,
 				AF265A631D516B49009F8088 /* PhotoBookParallaxing.swift in Sources */,
 				AF0D58611D498A6D00FB6E5E /* PageKeyView.swift in Sources */,
 				AF0D585D1D498A6D00FB6E5E /* PageKeyView+Parallax.swift in Sources */,
 				AF2AE68F1D511F9A00037F2F /* PhotoBookCollectionViewLayout.swift in Sources */,
+				8401EC09235BCC2D006E5D60 /* InfinitePageView+CircleView.swift in Sources */,
 				AF0D58641D498A6D00FB6E5E /* PhotoInfoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

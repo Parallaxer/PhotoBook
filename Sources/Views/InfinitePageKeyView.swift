@@ -44,6 +44,160 @@ final class CircleView: UIView {
 }
 
 //------------------------------------------------------------------------------------------------------------
+// Number of pages: 1
+// Number of positions: 1 (min/max)
+// 0
+//(a)
+// a
+// X                    <- Left edge interval:  [nil]
+// X                    <- Wrapping interval:   [nil]
+// X                    <- Right edge interval: [nil]
+
+//------------------------------------------------------------------------------------------------------------
+// Number of pages: 2
+// Number of positions: 2 (min/max)
+// 0 1
+//(a)b
+// a(b)
+// [ ]                  <- Left edge interval:  [0,1]
+//   X                  <- Wrapping interval:   [nil]
+//   X                  <- Right edge interval: [nil]
+
+//------------------------------------------------------------------------------------------------------------
+// Number of pages: 3
+// Number of positions: 3 (min/max)
+// 0 1 2
+//(a)b c
+// a(b)c
+// a b(c)
+// [ ]                  <- Left edge interval:  [0,1]
+//   X                  <- Wrapping interval:   [nil]
+//   [ ]                <- Right edge interval: [1,2]
+
+//------------------------------------------------------------------------------------------------------------
+// Number of pages: 4
+// Number of positions: 3 (min)
+// 0 1 2 3
+//(a)b c
+// a(b)c
+//   b(c)a
+// [ ]                  <- Left edge interval:  [0,1]
+//   [ ]                <- Wrapping interval:   [1,2]
+//     [ ]              <- Right edge interval: [2,3]
+
+//------------------------------------------------------------------------------------------------------------
+// Number of pages: 5
+// Number of positions: 3 (min)
+// 0 1 2 3 4
+//(a)b c
+// a(b)c
+// . b(c)a
+// . . c(a)b
+//     c a(b)
+// [ ]                  <- Left edge interval:  [0,1]
+//   [   ]              <- Wrapping interval:   [1,3]
+//       [ ]            <- Right edge interval: [3,4]
+
+//------------------------------------------------------------------------------------------------------------
+// Number of pages: 5
+// Number of positions: 4
+// 0 1 2 3 4
+//(a)b c d
+// a(b)c d
+// a b(c)d
+// . b c(d)a
+//   b c d(a)
+// [   ]                <- Left edge interval:  [0,2]
+//     [ ]              <- Wrapping interval:   [2,3]
+//       [ ]            <- Right edge interval: [3,4]
+
+//------------------------------------------------------------------------------------------------------------
+// Number of pages: 5
+// Number of positions: 5 (max)
+// 0 1 2 3 4
+//(a)b c d e
+// a(b)c d e
+// a b(c)d e
+// a b c(d)e
+// a b c d(e)
+// [   ]                <- Left edge interval:  [0,2]
+//     X                <- Wrapping interval:   [nil]
+//     [   ]            <- Right edge interval: [2,4]
+
+//------------------------------------------------------------------------------------------------------------
+// Number of pages: 10
+// Number of positions: 3 (minimum)
+// 0 1 2 3 4 5 6 7 8 9
+//(a)b c
+// a(b)c
+// . b(c)a
+// . . c(a)b
+// . . . a(b)c
+// . . . . b(c)a
+// . . . . . c(a)b
+// . . . . . . a(b)c
+// . . . . . . . b(c)a
+//               b c(a)
+// [ ]                  <- Left edge interval:  [0,1]
+//   [             ]    <- Wrapping interval:   [1,8]
+//                 [ ]  <- Right edge interval: [8,9]
+
+//------------------------------------------------------------------------------------------------------------
+// Number of pages: 10
+// Number of positions: 5
+// 0 1 2 3 4 5 6 7 8 9
+//(a)b c d e
+// a(b)c d e
+// a b(c)d e
+// . b c(d)e a
+// . . c d(e)a b
+// . . . d e(a)b c
+// . . . . e a(b)c d
+// . . . . . a b(c)d e
+//           a b c(d)e
+//           a b c d(e)
+// [   ]                <- Left edge interval:  [0,2]
+//     [         ]      <- Wrapping interval:   [2,7]
+//               [   ]  <- Right edge interval: [7,9]
+
+//------------------------------------------------------------------------------------------------------------
+// Number of pages: 10
+// Number of positions: 9
+// 0 1 2 3 4 5 6 7 8 9
+//(a)b c d e f g h i
+// a(b)c d e f g h i
+// a b(c)d e f g h i
+// a b c(d)e f g h i
+// a b c d(e)f g h i
+// . b c d e(f)g h i a
+// . b c d e f(g)h i a
+// . b c d e f g(h)i a
+// . b c d e f g h(i)a
+// . b c d e f g h i(a)
+// [       ]            <- Left edge interval:  [0,4]
+//         [ ]          <- Wrapping interval:   [4,5]
+//           [       ]  <- Right edge interval: [5,9]
+
+// Settable Properties
+//------------------------------------------------------------------------------------------------------------
+// Number of pages: 10
+// Number of positions: 10 (maximum)
+// 0 1 2 3 4 5 6 7 8 9
+//(a)b c d e f g h i j
+// a(b)c d e f g h i j
+// a b(c)d e f g h i j
+// a b c(d)e f g h i j
+// a b c d(e)f g h i j
+// a b c d e(f)g h i j
+// a b c d e f(g)h i j
+// a b c d e f g(h)i j
+// a b c d e f g h(i)j
+// a b c d e f g h i(j)
+// [       ]            <- Left edge interval:  [0,4]
+//         X            <- Wrapping interval:   [nil]
+//         [         ]  <- Right edge interval: [4,9]
+
+//------------------------------------------------------------------------------------------------------------
 //  Infinite animation. Each line below shows a state change that occurs as the user scrolls.
 //     (0, 1, 2, 3, 4, 5, 6, 7, 8, 9)   - all elements (numberOfPages: 10)
 //     [0, 1, 2, 3, 4]...               - visible elements (numberOfCircles: 5)
@@ -63,7 +217,7 @@ final class CircleView: UIView {
 //     {0, 1, 2}            {7, 8, 9}   - edge elements where cursor position changes.
 //------------------------------------------------------------------------------------------------------------
 // Wrapping behavior:
-//     ...|0 1 2 3 4|...            - visible indices (numberOfCircles: 5)
+//     ...|0 1 2 3 4|...                - visible indices (numberOfCircles: 5)
 //       ...|1 2 3 4 0|...
 //         ...|2 3 4 0 1|...
 //           ...|3 4 0 1 2|...
@@ -80,11 +234,17 @@ final class InfinitePageKeyView: UIView {
         didSet { buildUI() }
     }
 
-    var numberOfCircles: Int = 7 {
+    /// The number of circles displayed in the view.
+    var numberOfCircles: Int {
+        return min(maxNumberOfCircles, numberOfPages)
+    }
+
+    @IBInspectable var maxNumberOfCircles: Int = 7 {
         didSet { buildUI() }
     }
 
     var stepDistance: CGFloat {
+//        return bounds.width / CGFloat(numberOfCircles)
         return floor(bounds.width / CGFloat(numberOfCircles))
     }
 
@@ -106,17 +266,30 @@ final class InfinitePageKeyView: UIView {
 
     /// The center cursor location.
     var centerPosition: CGFloat {
-        return leftPosition + (floor(CGFloat(numberOfCircles) / 2) * stepDistance)
+//        let circleRadius = round(stepDistance / 2)
+//        let centerPosition = bounds.midX - circleRadius
+        let centerPosition = round(leftPosition + ((CGFloat(numberOfCircles) / 2) * stepDistance))
+        print("centerPosition: \(centerPosition)")
+        return centerPosition
     }
     
     /// The left-most cursor position.
     var leftPosition: CGFloat {
-        return circleContainerView?.bounds.minX ?? 0
+//        let circleRadius = round(stepDistance / 2)
+        let leftPosition = bounds.minX
+        print("leftPosition: \(leftPosition)")
+        return leftPosition
     }
     
     /// The right-most cursor position.
     var rightPosition: CGFloat {
-        return leftPosition + ceil(CGFloat(numberOfCircles - 1) * stepDistance)
+//        let circleRadius = floor(stepDistance / 2)
+//        let rightPosition = (circleContainerView?.bounds.maxX ?? 0)
+//        let rightPosition = leftPosition + ceil(CGFloat(numberOfCircles - 1) * stepDistance)
+        let rightPosition = bounds.maxX - (stepDistance)
+        print("rightPosition: \(rightPosition)")
+        return rightPosition
+//        return leftPosition + ceil(CGFloat(numberOfCircles - 1) * stepDistance)
     }
 
     /// The current cursor position.
@@ -129,16 +302,10 @@ final class InfinitePageKeyView: UIView {
         didSet { updateCursor() }
     }
 
-    func updateCursor() {
-        let scale = CGAffineTransform(scaleX: cursorScale, y: cursorScale)
-        let translation = CGAffineTransform(translationX: cursorPosition, y: 0)
-        cursorView?.transform = scale.concatenating(translation)
-    }
-
     /// All circle views, excluding the cursor.
     private(set) var circleViews: [CircleView] = []
 
-    private weak var cursorView: UIView?
+    private weak var cursorView: CircleView?
     private weak var travelView: UIView?
     private weak var circleContainerView: UIView?
 
@@ -159,7 +326,7 @@ final class InfinitePageKeyView: UIView {
         circleContainerView?.center = viewCenter
         
         let circleDiameter = stepDistance
-        let circleRadius = floor(circleDiameter / 2)
+        let circleRadius = round(circleDiameter / 2)
 
         let circleSize = CGSize(width: circleDiameter, height: circleDiameter)
         let circleCenter = CGPoint(x: circleRadius, y: viewCenter.y)
@@ -208,7 +375,7 @@ final class InfinitePageKeyView: UIView {
         circleViews = (0 ..< numberOfCircles).map { _ in
             let circleView = createCircleView(isHollow: true)
             circleContainerView.addSubview(circleView)
-//            circleView.backgroundColor = randomColors.randomElement()
+            circleView.backgroundColor = randomColors.randomElement()
             return circleView
         }
 
@@ -222,13 +389,19 @@ final class InfinitePageKeyView: UIView {
         setNeedsLayout()
         layoutIfNeeded()
 
-//        self.backgroundColor = UIColor(red: 0, green: 0, blue: 1, alpha: 0.5)
-//        travelView.backgroundColor = UIColor(red: 0, green: 1, blue: 0, alpha: 0.5)
+        self.backgroundColor = UIColor(red: 0, green: 0, blue: 1, alpha: 0.5)
+        travelView.backgroundColor = UIColor(red: 0, green: 1, blue: 0, alpha: 0.5)
     }
     
     private func createCircleView(isHollow: Bool) -> CircleView {
         let view = CircleView()
         view.backgroundColor = isHollow ? UIColor.init(white: 1, alpha: 0.5) : UIColor.white
         return view
+    }
+
+    private func updateCursor() {
+        let scale = CGAffineTransform(scaleX: cursorScale, y: cursorScale)
+        let translation = CGAffineTransform(translationX: cursorPosition, y: 0)
+        cursorView?.transform = scale.concatenating(translation)
     }
 }
