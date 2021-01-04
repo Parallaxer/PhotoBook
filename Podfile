@@ -4,8 +4,8 @@ platform :ios, '12.0'
 target 'PhotoBook' do
   use_frameworks!
 
-  pod 'RxCocoa'
-  pod 'RxSwift'
+  pod 'RxCocoa', '~> 5.0.0'
+  pod 'RxSwift', '~> 5.0.0'
   pod 'RxSwiftExt'
 
   pod 'Parallaxer', :git => 'https://github.com/Parallaxer/Parallaxer', :branch => 'rx'

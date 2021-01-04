@@ -8,13 +8,11 @@ private let kPhotoBookCellID = "PhotoBookCell"
 final class PhotoBookViewController: UIViewController, UICollectionViewDelegate {
     
     @IBOutlet fileprivate var collectionView: UICollectionView!
-    @IBOutlet fileprivate var infinitePageKeyView: InfinitePageKeyView!
     @IBOutlet fileprivate var infinitePageView: InfinitePageView!
-    @IBOutlet fileprivate var pageKeyView: PageKeyView!
     @IBOutlet fileprivate var photoInfoView: PhotoInfoView!
     @IBOutlet fileprivate var photoInfoHeightConstraint: NSLayoutConstraint!
     
-    var photoInfoInteraction: UIScrollView?
+    var photoInfoInteractionView: UIScrollView?
     
     fileprivate let photos = PhotoInfo.defaultPhotos
 
@@ -24,9 +22,13 @@ final class PhotoBookViewController: UIViewController, UICollectionViewDelegate 
         super.viewDidLoad()
 
         infinitePageView.numberOfPages = photos.count
-        infinitePageKeyView.numberOfPages = photos.count
-        pageKeyView.numberOfPages = photos.count
         collectionView.reloadData()
+        
+        // We need to make sure that the views have dimensionality so that our parallax intervals don't throw
+        // an error. In a production app, you'll need to handle the cases where your view's size is zero, but
+        // for the sake of this example, lets force the collection view to layout and show the content we just
+        // loaded.
+        collectionView.layoutIfNeeded()
 
         preparePhotoInfoInteraction()
 
@@ -38,9 +40,6 @@ final class PhotoBookViewController: UIViewController, UICollectionViewDelegate 
     }
 
     private func bindObservables() {
-        let scrollingTransform = photoBookScrollingTransform
-            .share(replay: 1)
-        
         visiblePhotoIndex
             .drive(onNext: { [unowned self] index in
                 self.photoInfoView.populate(withPhotoInfo: self.photos[index])
@@ -50,18 +49,12 @@ final class PhotoBookViewController: UIViewController, UICollectionViewDelegate 
         bindPhotoInfoParallax()
             .disposed(by: disposeBag)
 
-        pageKeyView.bindPageKeyParallax(with: scrollingTransform)
-            .disposed(by: disposeBag)
-
-        infinitePageKeyView.bindPageKeyParallax(with: scrollingTransform)
-            .disposed(by: disposeBag)
-
-        infinitePageView.bindScrollingTransform(scrollingTransform)
+        infinitePageView.bindScrollingTransform(photoBookScrollingTransform)
             .disposed(by: disposeBag)
     }
 }
 
-extension PhotoBookViewController: PhotoInfoParallaxing {
+extension PhotoBookViewController: PhotoInfoAnimating {
     
     var photoBookInteractionEnabled: Bool {
         get { return collectionView.isUserInteractionEnabled == true }
@@ -84,7 +77,7 @@ extension PhotoBookViewController: PhotoInfoParallaxing {
     }
 }
 
-extension PhotoBookViewController: PhotoBookParallaxing {
+extension PhotoBookViewController: PhotoBookAnimating {
 
     var photoBookCollectionView: UICollectionView {
         return collectionView

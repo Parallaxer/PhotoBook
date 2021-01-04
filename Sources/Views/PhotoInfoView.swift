@@ -1,5 +1,6 @@
 import UIKit
 
+/// Displays information about a photo.
 final class PhotoInfoView: UIView {
     
     @IBOutlet private var titleLabel: UILabel!

@@ -7,12 +7,6 @@ Craft parallax effects in Swift.
 
 ## Installation
 
-#### With [Carthage](https://github.com/Carthage/Carthage)
-
-```
-github "Parallaxer/Parallaxer"
-```
-
 #### With [CocoaPods](https://github.com/CocoaPods/CocoaPods)
 
 ```
@@ -22,7 +16,7 @@ pod 'Parallaxer'
 
 ## Overview
 
-Parallaxer makes it simple to establish relationships between changing values in your application; 
+Parallaxer makes it easy to establish relationships between changing values in your application; 
 use it to build delightful animations and tight controller interactions.
 
 ### Example use-cases
@@ -37,32 +31,34 @@ use it to build delightful animations and tight controller interactions.
 ```Swift
 struct ParallaxTransform {
     let interval: ParallaxInterval
-    let unitPosition: Double
+    let position: Double
 }
 ```
 
 A parallax transform consists of two things: an *interval*, over which change is expected to occur,
-and a *unit position*, a number between [0, 1], which serves as a reference point on that interval.
+and a *position*, a number between [0, 1], which serves as a reference point on that interval.
 
 During your daily commute, you leave your home, hop on some form of transportation and eventually 
 arrive at work. Along the way, you'll pass by various landmarks that you've seen dozens of times before, 
 which give you a sense of where you are in relation to your home and the office.
 
-If you modeled your commute as a parallax transform, its interval might be [0 miles, 12 miles] and its unit position would then indicate where you are in relation to your journey.
+If you modeled your commute as a parallax transform, its interval might be [0 miles, 12 miles] and its 
+position would then indicate where you are in relation to your journey.
 
-As you leave your home, the transform's unit position is 0, and when you reach the office, the unit position is 1. Each landmark along your commute is represented by a different unit position between 0 and 1.
+As you leave your home, the transform's position is 0, and when you reach the office, the position is 1. 
+Each landmark along your commute is represented by a different position between 0 and 1.
 
-Parallax transformations may be performed which alter the receiving transform's interval and/or its unit 
-position. Each transformation results in a new transform which preserves some property of the original.
+Parallax operators alter a transform's interval and/or its position. Each operation results 
+in a new transform which preserves some property of the original.
 
-#### Supported transformations:
+#### Operators:
 
-- `scale(to: ParallaxInterval)`
-    - Alter the interval of the receiving transform, preserving its unit position.
-- `reposition(with: PositionCurve)`
-    - Alter the unit position of the receiving transform, preserving its interval.
-- `focus(subinterval: ParallaxInterval)`
-    - Alter both the interval and unit position of the receiving transform, preserving its parallax value.
+- `relate(to: ParallaxInterval)`
+    - Alter the interval of the receiving transform, preserving its position.
+- `morph(with: PositionCurve)`
+    - Alter the position of the receiving transform, preserving its interval.
+- `focus(on: ParallaxInterval)`
+    - Alter both the interval and position of the receiving transform, preserving its parallax value.
     
 ### `ParallaxInterval`:
 
@@ -78,7 +74,7 @@ the interval over which change is expected to occur.
 
 ### `PositionCurve`:
 
-A position curve affects how a unit position progresses over the unit interval: [0, 1].
+A position curve affects how a position changes over the unit interval: [0, 1].
 
 ## Usage
 
@@ -109,24 +105,24 @@ We can calculate `scrollingInterval` like so:
     let maxScrollDistanceY = scrollView.contentSize.height - scrollView.frame.height
     let scrollingInterval = ParallaxInterval(from: 0, to: maxScrollDistanceY)
     ```
-2) The scroll indicator shall travel up and down the full height of the scroll view's frame; this is very straight-forward:
+2) The scroll indicator shall travel up and down the full height of the scroll view's frame; this is straight-forward:
     ```Swift
     let indicatorPositionInterval = ParallaxInterval(from: 0, to: scrollView.frame.height)
     ```
 
 #### Finally, relate these intervals to each other:
 
-Whenever scrolling occurs, the content offset must be transformed into a scroll-indicator position. (If you guessed 
-that `ParallaxTransform` can help with that, then please enjoy this freshly baked cookie: 🍪.)
+Whenever scrolling occurs, the indicator's position on the screen needs to change; `ParallaxTransform` can 
+help with that.
 ```Swift
 // Create a transform representing the content offset of the scroll view.
 let scrollingTransform = ParallaxTransform(
     interval: scrollingInterval,
     parallaxValue: scrollView.contentOffset.y)
 
-// Relate the indicator's position to the scrolling transform.
+// Relate the scrolling transform to the indicator's position.
 let indicatorPositionTransform = scrollingTransform
-    .scale(to: indicatorPositionInterval)
+    .relate(to: indicatorPositionInterval)
 ```
 
 #### Tie it all together:
@@ -145,29 +141,32 @@ override func viewDidLoad() {
     let scrollingInterval = ParallaxInterval(from: 0, to: maxScrollDistanceY)
 
     // Create a transform representing the content offset of the scroll view.
-    let scrollingTransform = scrollView.rx.contentOffset // RxCocoa.
-        .map { return $0.y } // RxSwift.
+    let scrollingTransform = scrollView.rx.contentOffset
+        .map { return $0.y }
         .parallax(over: scrollingInterval)
 
     // Determine the indicator's position interval, over which the indicator can move.
     let indicatorPositionInterval = ParallaxInterval(from: 0, to: scrollView.frame.height)
 
-    // Relate the indicator's position to the scrolling transform.
+    // Relate the scrolling transform to the indicator's position.
     let indicatorPositionTransform = scrollingTransform
-        .parallaxScale(to: indicatorPositionInterval)
+        .parallaxRelate(to: indicatorPositionInterval)
 
     // Finally, bind the indicator parallax value to the image view's center point.
     indicatorPositionTransform
         .parallaxValue()
-        .subscribe(onNext: { [unowned self] positionY in // RxSwift.
+        .subscribe(onNext: { [weak self] positionY in
+            guard let self = self else {
+                return
+            }
             self.indicatorImageView.center = CGPoint(
                 x: self.scrollIndicator.center.x
                 y: positionY)
         }
-        .disposed(by: disposeBag) // RxSwift.
+        .disposed(by: disposeBag)
 }
 ```
-Note: I've commented the lines which use standard `RxSwift`/`RxCocoa` functions. Please see the 
+Note: This example uses a few standard `RxSwift`/`RxCocoa` functions, such as `map()`, `subscribe(onNext:)` and `disposed(by:)`. Please see the 
 [RxSwift documentation](https://github.com/ReactiveX/RxSwift) if you have a question about those.
 
 ### [PhotoBook](https://github.com/Parallaxer/PhotoBook) example project

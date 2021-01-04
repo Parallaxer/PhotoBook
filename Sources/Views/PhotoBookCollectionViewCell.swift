@@ -1,6 +1,7 @@
 import RxSwift
 import UIKit
 
+/// Responsible for rendering a single photo in a photo book.
 final class PhotoBookCollectionViewCell: UICollectionViewCell {
 
     /// The image rendered in the cell.

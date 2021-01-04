@@ -9,19 +9,16 @@
 /* Begin PBXBuildFile section */
 		2CC965A2230C4FC14D17F6E0 /* Pods_PhotoBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74442D920342C7187A2284C9 /* Pods_PhotoBook.framework */; };
 		8401EC072357D4CA006E5D60 /* InfinitePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8401EC062357D4CA006E5D60 /* InfinitePageView.swift */; };
-		8401EC09235BCC2D006E5D60 /* InfinitePageView+CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8401EC08235BCC2D006E5D60 /* InfinitePageView+CircleView.swift */; };
-		842375D5226BE1C2009572DC /* InfinitePageKeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842375D4226BE1C2009572DC /* InfinitePageKeyView.swift */; };
-		842375D7226BE612009572DC /* InfinitePageKeyView+Parallax.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842375D6226BE612009572DC /* InfinitePageKeyView+Parallax.swift */; };
+		84FE461E2377754700620FC4 /* InfinitePageView+CursorAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FE461D2377754700620FC4 /* InfinitePageView+CursorAnimation.swift */; };
+		84FE4620237776C500620FC4 /* InfinitePageView+WaypointAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FE461F237776C500620FC4 /* InfinitePageView+WaypointAnimation.swift */; };
 		AF0D585C1D498A6D00FB6E5E /* PhotoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0D58501D498A6D00FB6E5E /* PhotoInfo.swift */; };
-		AF0D585D1D498A6D00FB6E5E /* PageKeyView+Parallax.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0D58521D498A6D00FB6E5E /* PageKeyView+Parallax.swift */; };
-		AF0D58611D498A6D00FB6E5E /* PageKeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0D58581D498A6D00FB6E5E /* PageKeyView.swift */; };
 		AF0D58641D498A6D00FB6E5E /* PhotoInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0D585B1D498A6D00FB6E5E /* PhotoInfoView.swift */; };
 		AF23A37F1D4A93E900EA41D3 /* AppSupport.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF23A37E1D4A93E900EA41D3 /* AppSupport.xcassets */; };
-		AF265A631D516B49009F8088 /* PhotoBookParallaxing.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF265A621D516B49009F8088 /* PhotoBookParallaxing.swift */; };
+		AF265A631D516B49009F8088 /* PhotoBookAnimating.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF265A621D516B49009F8088 /* PhotoBookAnimating.swift */; };
 		AF28B33D1D5132E4004CE62E /* PhotoBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF28B33C1D5132E4004CE62E /* PhotoBookViewController.swift */; };
 		AF28B33F1D5135CF004CE62E /* PhotoBookCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF28B33E1D5135CF004CE62E /* PhotoBookCollectionViewCell.swift */; };
 		AF2AE68F1D511F9A00037F2F /* PhotoBookCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2AE68E1D511F9A00037F2F /* PhotoBookCollectionViewLayout.swift */; };
-		AF6F097E1D49ECC80028992A /* PhotoInfoParallaxing.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6F097D1D49ECC80028992A /* PhotoInfoParallaxing.swift */; };
+		AF6F097E1D49ECC80028992A /* PhotoInfoAnimating.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6F097D1D49ECC80028992A /* PhotoInfoAnimating.swift */; };
 		AFD6F16A1D47F99400F18036 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AFD6F1591D47F99400F18036 /* Assets.xcassets */; };
 		AFD6F16B1D47F99400F18036 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFD6F15A1D47F99400F18036 /* LaunchScreen.storyboard */; };
 		AFD6F16C1D47F99400F18036 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFD6F15C1D47F99400F18036 /* Main.storyboard */; };
@@ -32,23 +29,20 @@
 		71E42CA57E1D4D3026E3436E /* Pods-PhotoBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoBook.release.xcconfig"; path = "Pods/Target Support Files/Pods-PhotoBook/Pods-PhotoBook.release.xcconfig"; sourceTree = "<group>"; };
 		74442D920342C7187A2284C9 /* Pods_PhotoBook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PhotoBook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8401EC062357D4CA006E5D60 /* InfinitePageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfinitePageView.swift; sourceTree = "<group>"; };
-		8401EC08235BCC2D006E5D60 /* InfinitePageView+CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "InfinitePageView+CircleView.swift"; sourceTree = "<group>"; };
-		842375D4226BE1C2009572DC /* InfinitePageKeyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfinitePageKeyView.swift; sourceTree = "<group>"; };
-		842375D6226BE612009572DC /* InfinitePageKeyView+Parallax.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "InfinitePageKeyView+Parallax.swift"; sourceTree = "<group>"; };
+		84FE461D2377754700620FC4 /* InfinitePageView+CursorAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InfinitePageView+CursorAnimation.swift"; sourceTree = "<group>"; };
+		84FE461F237776C500620FC4 /* InfinitePageView+WaypointAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "InfinitePageView+WaypointAnimation.swift"; sourceTree = "<group>"; };
 		8F2124EBF64BB9101AE05257 /* Pods-PhotoBook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoBook.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PhotoBook/Pods-PhotoBook.debug.xcconfig"; sourceTree = "<group>"; };
 		AF0D58451D4978EB00FB6E5E /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
 		AF0D58461D4978EB00FB6E5E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		AF0D58501D498A6D00FB6E5E /* PhotoInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoInfo.swift; sourceTree = "<group>"; };
-		AF0D58521D498A6D00FB6E5E /* PageKeyView+Parallax.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PageKeyView+Parallax.swift"; sourceTree = "<group>"; };
-		AF0D58581D498A6D00FB6E5E /* PageKeyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageKeyView.swift; sourceTree = "<group>"; };
 		AF0D585B1D498A6D00FB6E5E /* PhotoInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoInfoView.swift; sourceTree = "<group>"; };
 		AF1749C41D47F6A5006244D9 /* PhotoBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF23A37E1D4A93E900EA41D3 /* AppSupport.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppSupport.xcassets; sourceTree = "<group>"; };
-		AF265A621D516B49009F8088 /* PhotoBookParallaxing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBookParallaxing.swift; sourceTree = "<group>"; };
+		AF265A621D516B49009F8088 /* PhotoBookAnimating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBookAnimating.swift; sourceTree = "<group>"; };
 		AF28B33C1D5132E4004CE62E /* PhotoBookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBookViewController.swift; sourceTree = "<group>"; };
 		AF28B33E1D5135CF004CE62E /* PhotoBookCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBookCollectionViewCell.swift; sourceTree = "<group>"; };
 		AF2AE68E1D511F9A00037F2F /* PhotoBookCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBookCollectionViewLayout.swift; sourceTree = "<group>"; };
-		AF6F097D1D49ECC80028992A /* PhotoInfoParallaxing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoInfoParallaxing.swift; sourceTree = "<group>"; };
+		AF6F097D1D49ECC80028992A /* PhotoInfoAnimating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoInfoAnimating.swift; sourceTree = "<group>"; };
 		AFB18E6B1D552BA6007534A5 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		AFD6F1591D47F99400F18036 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AFD6F15B1D47F99400F18036 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -69,21 +63,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		84FE462123777A3D00620FC4 /* InfinitePageView */ = {
+			isa = PBXGroup;
+			children = (
+				8401EC062357D4CA006E5D60 /* InfinitePageView.swift */,
+				84FE461D2377754700620FC4 /* InfinitePageView+CursorAnimation.swift */,
+				84FE461F237776C500620FC4 /* InfinitePageView+WaypointAnimation.swift */,
+			);
+			path = InfinitePageView;
+			sourceTree = "<group>";
+		};
 		AF0D584F1D498A6D00FB6E5E /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				AF0D58501D498A6D00FB6E5E /* PhotoInfo.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		AF0D58511D498A6D00FB6E5E /* Parallax Effects */ = {
-			isa = PBXGroup;
-			children = (
-				AF0D58521D498A6D00FB6E5E /* PageKeyView+Parallax.swift */,
-				842375D6226BE612009572DC /* InfinitePageKeyView+Parallax.swift */,
-			);
-			path = "Parallax Effects";
 			sourceTree = "<group>";
 		};
 		AF0D58551D498A6D00FB6E5E /* View Controllers */ = {
@@ -97,10 +92,7 @@
 		AF0D58571D498A6D00FB6E5E /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				AF0D58581D498A6D00FB6E5E /* PageKeyView.swift */,
-				842375D4226BE1C2009572DC /* InfinitePageKeyView.swift */,
-				8401EC08235BCC2D006E5D60 /* InfinitePageView+CircleView.swift */,
-				8401EC062357D4CA006E5D60 /* InfinitePageView.swift */,
+				84FE462123777A3D00620FC4 /* InfinitePageView */,
 				AF28B33E1D5135CF004CE62E /* PhotoBookCollectionViewCell.swift */,
 				AF2AE68E1D511F9A00037F2F /* PhotoBookCollectionViewLayout.swift */,
 				AF0D585B1D498A6D00FB6E5E /* PhotoInfoView.swift */,
@@ -133,8 +125,8 @@
 		AF6F097C1D49ECC80028992A /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				AF6F097D1D49ECC80028992A /* PhotoInfoParallaxing.swift */,
-				AF265A621D516B49009F8088 /* PhotoBookParallaxing.swift */,
+				AF6F097D1D49ECC80028992A /* PhotoInfoAnimating.swift */,
+				AF265A621D516B49009F8088 /* PhotoBookAnimating.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -156,7 +148,6 @@
 			children = (
 				AFD6F1601D47F99400F18036 /* AppDelegate.swift */,
 				AF0D584F1D498A6D00FB6E5E /* Models */,
-				AF0D58511D498A6D00FB6E5E /* Parallax Effects */,
 				AF6F097C1D49ECC80028992A /* Protocols */,
 				AF0D58551D498A6D00FB6E5E /* View Controllers */,
 				AF0D58571D498A6D00FB6E5E /* Views */,
@@ -210,12 +201,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 1010;
+				LastUpgradeCheck = 1100;
 				ORGANIZATIONNAME = "Maxody Softworks";
 				TargetAttributes = {
 					AF1749C31D47F6A5006244D9 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 8XDACK28HR;
+						DevelopmentTeam = RG76J9B7LZ;
 						DevelopmentTeamName = "Maxody Softworks LLC";
 						LastSwiftMigration = 1100;
 						ProvisioningStyle = Automatic;
@@ -224,10 +215,9 @@
 			};
 			buildConfigurationList = AF1749BF1D47F6A5006244D9 /* Build configuration list for PBXProject "PhotoBook" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 			);
@@ -309,17 +299,14 @@
 			files = (
 				8401EC072357D4CA006E5D60 /* InfinitePageView.swift in Sources */,
 				AF0D585C1D498A6D00FB6E5E /* PhotoInfo.swift in Sources */,
-				842375D5226BE1C2009572DC /* InfinitePageKeyView.swift in Sources */,
-				AF6F097E1D49ECC80028992A /* PhotoInfoParallaxing.swift in Sources */,
+				AF6F097E1D49ECC80028992A /* PhotoInfoAnimating.swift in Sources */,
+				84FE4620237776C500620FC4 /* InfinitePageView+WaypointAnimation.swift in Sources */,
 				AF28B33D1D5132E4004CE62E /* PhotoBookViewController.swift in Sources */,
 				AFD6F16E1D47F99400F18036 /* AppDelegate.swift in Sources */,
-				842375D7226BE612009572DC /* InfinitePageKeyView+Parallax.swift in Sources */,
+				84FE461E2377754700620FC4 /* InfinitePageView+CursorAnimation.swift in Sources */,
 				AF28B33F1D5135CF004CE62E /* PhotoBookCollectionViewCell.swift in Sources */,
-				AF265A631D516B49009F8088 /* PhotoBookParallaxing.swift in Sources */,
-				AF0D58611D498A6D00FB6E5E /* PageKeyView.swift in Sources */,
-				AF0D585D1D498A6D00FB6E5E /* PageKeyView+Parallax.swift in Sources */,
+				AF265A631D516B49009F8088 /* PhotoBookAnimating.swift in Sources */,
 				AF2AE68F1D511F9A00037F2F /* PhotoBookCollectionViewLayout.swift in Sources */,
-				8401EC09235BCC2D006E5D60 /* InfinitePageView+CircleView.swift in Sources */,
 				AF0D58641D498A6D00FB6E5E /* PhotoInfoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -350,6 +337,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -410,6 +398,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -465,6 +454,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = RG76J9B7LZ;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

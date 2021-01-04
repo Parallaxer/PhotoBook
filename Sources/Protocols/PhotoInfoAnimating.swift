@@ -4,10 +4,10 @@ import RxSwift
 import UIKit
 
 /// Conformance allows vertical interaction to show/dismiss information about a photo.
-protocol PhotoInfoParallaxing: class {
+protocol PhotoInfoAnimating: class {
 
     /// The interaction that will drive the photo info transition, based on a scroll view.
-    var photoInfoInteraction: UIScrollView? { get set }
+    var photoInfoInteractionView: UIScrollView? { get set }
     
     /// Whether the photo book can receive input.
     var photoBookInteractionEnabled: Bool { get set }
@@ -28,26 +28,26 @@ protocol PhotoInfoParallaxing: class {
     func bindPhotoInfoParallax() -> Disposable
 }
 
-extension PhotoInfoParallaxing where Self: UIViewController {
+extension PhotoInfoAnimating where Self: UIViewController {
     
     func preparePhotoInfoInteraction() {
-        let interaction = UIScrollView()
-        interaction.frame.size.height = view.bounds.height
-        interaction.contentSize = CGSize(width: view.bounds.width, height: view.bounds.height * 2)
-        interaction.isPagingEnabled = true
-        interaction.alwaysBounceHorizontal = false
-        interaction.showsVerticalScrollIndicator = false
-        interaction.showsHorizontalScrollIndicator = false
-        view.addGestureRecognizer(interaction.panGestureRecognizer)
-        view.addSubview(interaction)
-        photoInfoInteraction = interaction
+        let interactionView = UIScrollView()
+        interactionView.frame.size.height = view.bounds.height
+        interactionView.contentSize = CGSize(width: view.bounds.width, height: view.bounds.height * 2)
+        interactionView.isPagingEnabled = true
+        interactionView.alwaysBounceHorizontal = false
+        interactionView.showsVerticalScrollIndicator = false
+        interactionView.showsHorizontalScrollIndicator = false
+        view.addGestureRecognizer(interactionView.panGestureRecognizer)
+        view.addSubview(interactionView)
+        photoInfoInteractionView = interactionView
     }
 }
 
-extension PhotoInfoParallaxing {
+extension PhotoInfoAnimating {
 
     func bindPhotoInfoParallax() -> Disposable {
-        guard let interaction = photoInfoInteraction else {
+        guard let interaction = photoInfoInteractionView else {
             return Disposables.create()
         }
 
@@ -56,8 +56,8 @@ extension PhotoInfoParallaxing {
             // Create a transform which follows the content offset over the interval of interaction.
             .parallax(over: .interval(from: 0, to: interaction.bounds.height))
             // Normalize.
-            .parallaxScale(to: ParallaxInterval<CGFloat>.rx.interval(from: 0, to: 1))
-            .share(replay: 1)
+            .parallaxRelate(to: ParallaxInterval<CGFloat>.rx.interval(from: 0, to: 1))
+            .share()
 
         return Disposables.create([
             bindLockPhotoBookEffect(photoInfoVisibility: photoInfoVisibility),
@@ -74,7 +74,7 @@ extension PhotoInfoParallaxing {
         return photoInfoVisibility
             .parallaxValue()
             .subscribe(onNext: { [weak self] progress in
-                // While in progress, this effect prevents user from interacting with the photo book.
+                // While in progress, this effect prevents the user from interacting with the photo book.
                 self?.photoBookInteractionEnabled = progress == CGFloat(0)
             })
     }
@@ -84,7 +84,7 @@ extension PhotoInfoParallaxing {
         -> Disposable
     {
         return photoInfoVisibility
-            .parallaxScale(to: .interval(from: 1, to: 0.75))
+            .parallaxRelate(to: .interval(from: 1, to: 0.75))
             .parallaxValue()
             .subscribe(onNext: { [weak self] alpha in
                 self?.photoBookAlpha = alpha
@@ -96,7 +96,7 @@ extension PhotoInfoParallaxing {
         -> Disposable
     {
         return photoInfoVisibility
-            .parallaxScale(to: .interval(from: 1, to: 0.9))
+            .parallaxRelate(to: .interval(from: 1, to: 0.9))
             .parallaxValue()
             .subscribe(onNext: { [weak self] scale in
                 self?.photoBookScale = scale
@@ -104,7 +104,7 @@ extension PhotoInfoParallaxing {
     }
 }
 
-extension PhotoInfoParallaxing {
+extension PhotoInfoAnimating {
 
     private func bindShowPhotoInfoEffect(
         photoInfoVisibility: Observable<ParallaxTransform<CGFloat>>)
@@ -114,11 +114,11 @@ extension PhotoInfoParallaxing {
             // Don't begin to show the photo info view until 25% of the interaction has occurred; this gives
             // the animation a sense of depth as well as priority. We want the photo book to appear to move
             // backward a little bit before the photo info view becomes visible.
-            .parallaxFocus(subinterval: .interval(from: CGFloat(0.25), to: CGFloat(1.0)))
+            .parallaxFocus(on: .interval(from: CGFloat(0.25), to: CGFloat(1.0)))
             // Over the focus interval, increase the height from 0 to 128. In a production app, you may want
             // to use an observable height instead of a hard coded height, especially if your content varies
             // in size.
-            .parallaxScale(to: .interval(from: CGFloat(0), to: 128))
+            .parallaxRelate(to: .interval(from: CGFloat(0), to: 128))
             .parallaxValue()
             .subscribe(onNext: { [weak self] height in
                 self?.photoInfoHeight = height

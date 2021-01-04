@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="l4e-78-haE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="l4e-78-haE">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -53,34 +53,17 @@
                                 </connections>
                             </collectionView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K45-SA-NK9" customClass="InfinitePageView" customModule="PhotoBook" customModuleProvider="target">
-                                <rect key="frame" x="102.5" y="565" width="170" height="30"/>
+                                <rect key="frame" x="97.5" y="617" width="180" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="170" id="JEJ-8R-6jU"/>
+                                    <constraint firstAttribute="width" constant="180" id="JEJ-8R-6jU"/>
                                     <constraint firstAttribute="height" constant="30" id="Vs0-WV-fVU"/>
                                 </constraints>
-                            </view>
-                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BJz-Nq-S94" userLabel="Infinite Page Key View" customClass="InfinitePageKeyView" customModule="PhotoBook" customModuleProvider="target">
-                                <rect key="frame" x="102.5" y="595" width="170" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="7YQ-5I-74l"/>
-                                    <constraint firstAttribute="width" constant="170" id="qzW-e9-tCt"/>
-                                </constraints>
-                                <viewLayoutGuide key="safeArea" id="0Mw-Qe-wuE"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="numberOfPages">
-                                        <integer key="value" value="3"/>
+                                        <integer key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
-                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V7i-gS-VFp" customClass="PageKeyView" customModule="PhotoBook" customModuleProvider="target">
-                                <rect key="frame" x="75" y="625" width="225" height="22"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="225" id="2Vr-Cy-HJV"/>
-                                    <constraint firstAttribute="height" constant="22" id="3wK-qo-GSG"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="numberOfPages">
-                                        <integer key="value" value="3"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="maxNumberOfWaypoints">
+                                        <integer key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
@@ -116,29 +99,23 @@
                                 </connections>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="Cn5-2a-fTQ"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="Cn5-2a-fTQ" firstAttribute="bottom" secondItem="K45-SA-NK9" secondAttribute="bottom" constant="20" id="7Jd-xG-vsk"/>
                             <constraint firstAttribute="bottom" secondItem="whs-pH-CEO" secondAttribute="bottom" id="8jr-6B-YMR"/>
                             <constraint firstAttribute="bottom" secondItem="sc7-Bg-FH5" secondAttribute="bottom" priority="500" id="FlR-Eb-O0S"/>
-                            <constraint firstItem="BJz-Nq-S94" firstAttribute="top" secondItem="K45-SA-NK9" secondAttribute="bottom" id="GFF-qj-H7J"/>
-                            <constraint firstItem="V7i-gS-VFp" firstAttribute="top" secondItem="BJz-Nq-S94" secondAttribute="bottom" id="Hrf-72-mxd"/>
-                            <constraint firstItem="BJz-Nq-S94" firstAttribute="centerX" secondItem="Cn5-2a-fTQ" secondAttribute="centerX" id="Orv-No-RsJ"/>
                             <constraint firstAttribute="trailing" secondItem="whs-pH-CEO" secondAttribute="trailing" id="Q7T-io-mX3"/>
                             <constraint firstItem="sc7-Bg-FH5" firstAttribute="leading" secondItem="Cn5-2a-fTQ" secondAttribute="leading" id="UDj-lv-8XP"/>
-                            <constraint firstItem="Cn5-2a-fTQ" firstAttribute="bottom" secondItem="V7i-gS-VFp" secondAttribute="bottom" constant="20" id="WTK-kZ-Nec"/>
                             <constraint firstItem="Cn5-2a-fTQ" firstAttribute="trailing" secondItem="sc7-Bg-FH5" secondAttribute="trailing" id="Z3T-fn-Wea"/>
                             <constraint firstItem="K45-SA-NK9" firstAttribute="centerX" secondItem="Cn5-2a-fTQ" secondAttribute="centerX" id="gKf-Gi-Eri"/>
-                            <constraint firstItem="V7i-gS-VFp" firstAttribute="centerX" secondItem="Cn5-2a-fTQ" secondAttribute="centerX" id="lu6-jx-uYA"/>
                             <constraint firstItem="whs-pH-CEO" firstAttribute="top" secondItem="BSD-wv-91n" secondAttribute="top" id="pYz-sn-B6r"/>
                             <constraint firstItem="whs-pH-CEO" firstAttribute="leading" secondItem="BSD-wv-91n" secondAttribute="leading" id="toH-Xw-pKp"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="Cn5-2a-fTQ"/>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="whs-pH-CEO" id="l6H-Od-4wV"/>
-                        <outlet property="infinitePageKeyView" destination="BJz-Nq-S94" id="FJH-un-0JJ"/>
                         <outlet property="infinitePageView" destination="K45-SA-NK9" id="7Ei-eo-GlU"/>
-                        <outlet property="pageKeyView" destination="V7i-gS-VFp" id="azJ-P0-n99"/>
                         <outlet property="photoInfoHeightConstraint" destination="GL0-YM-e9y" id="zDo-vJ-Cnv"/>
                         <outlet property="photoInfoView" destination="sc7-Bg-FH5" id="4lv-lt-4Dj"/>
                     </connections>
