@@ -9,16 +9,16 @@
 /* Begin PBXBuildFile section */
 		2CC965A2230C4FC14D17F6E0 /* Pods_PhotoBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74442D920342C7187A2284C9 /* Pods_PhotoBook.framework */; };
 		8401EC072357D4CA006E5D60 /* InfinitePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8401EC062357D4CA006E5D60 /* InfinitePageView.swift */; };
+		846FAB6025A2D945001FD28B /* PhotoInfoAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846FAB5F25A2D945001FD28B /* PhotoInfoAnimation.swift */; };
+		846FAB6D25A2E9FB001FD28B /* PhotoBookAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846FAB6C25A2E9FB001FD28B /* PhotoBookAnimation.swift */; };
 		84FE461E2377754700620FC4 /* InfinitePageView+CursorAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FE461D2377754700620FC4 /* InfinitePageView+CursorAnimation.swift */; };
 		84FE4620237776C500620FC4 /* InfinitePageView+WaypointAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FE461F237776C500620FC4 /* InfinitePageView+WaypointAnimation.swift */; };
 		AF0D585C1D498A6D00FB6E5E /* PhotoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0D58501D498A6D00FB6E5E /* PhotoInfo.swift */; };
 		AF0D58641D498A6D00FB6E5E /* PhotoInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0D585B1D498A6D00FB6E5E /* PhotoInfoView.swift */; };
 		AF23A37F1D4A93E900EA41D3 /* AppSupport.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF23A37E1D4A93E900EA41D3 /* AppSupport.xcassets */; };
-		AF265A631D516B49009F8088 /* PhotoBookAnimating.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF265A621D516B49009F8088 /* PhotoBookAnimating.swift */; };
 		AF28B33D1D5132E4004CE62E /* PhotoBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF28B33C1D5132E4004CE62E /* PhotoBookViewController.swift */; };
 		AF28B33F1D5135CF004CE62E /* PhotoBookCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF28B33E1D5135CF004CE62E /* PhotoBookCollectionViewCell.swift */; };
 		AF2AE68F1D511F9A00037F2F /* PhotoBookCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2AE68E1D511F9A00037F2F /* PhotoBookCollectionViewLayout.swift */; };
-		AF6F097E1D49ECC80028992A /* PhotoInfoAnimating.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6F097D1D49ECC80028992A /* PhotoInfoAnimating.swift */; };
 		AFD6F16A1D47F99400F18036 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AFD6F1591D47F99400F18036 /* Assets.xcassets */; };
 		AFD6F16B1D47F99400F18036 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFD6F15A1D47F99400F18036 /* LaunchScreen.storyboard */; };
 		AFD6F16C1D47F99400F18036 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFD6F15C1D47F99400F18036 /* Main.storyboard */; };
@@ -29,6 +29,8 @@
 		71E42CA57E1D4D3026E3436E /* Pods-PhotoBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoBook.release.xcconfig"; path = "Pods/Target Support Files/Pods-PhotoBook/Pods-PhotoBook.release.xcconfig"; sourceTree = "<group>"; };
 		74442D920342C7187A2284C9 /* Pods_PhotoBook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PhotoBook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8401EC062357D4CA006E5D60 /* InfinitePageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfinitePageView.swift; sourceTree = "<group>"; };
+		846FAB5F25A2D945001FD28B /* PhotoInfoAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoInfoAnimation.swift; sourceTree = "<group>"; };
+		846FAB6C25A2E9FB001FD28B /* PhotoBookAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoBookAnimation.swift; sourceTree = "<group>"; };
 		84FE461D2377754700620FC4 /* InfinitePageView+CursorAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InfinitePageView+CursorAnimation.swift"; sourceTree = "<group>"; };
 		84FE461F237776C500620FC4 /* InfinitePageView+WaypointAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "InfinitePageView+WaypointAnimation.swift"; sourceTree = "<group>"; };
 		8F2124EBF64BB9101AE05257 /* Pods-PhotoBook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoBook.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PhotoBook/Pods-PhotoBook.debug.xcconfig"; sourceTree = "<group>"; };
@@ -38,11 +40,9 @@
 		AF0D585B1D498A6D00FB6E5E /* PhotoInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoInfoView.swift; sourceTree = "<group>"; };
 		AF1749C41D47F6A5006244D9 /* PhotoBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF23A37E1D4A93E900EA41D3 /* AppSupport.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppSupport.xcassets; sourceTree = "<group>"; };
-		AF265A621D516B49009F8088 /* PhotoBookAnimating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBookAnimating.swift; sourceTree = "<group>"; };
 		AF28B33C1D5132E4004CE62E /* PhotoBookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBookViewController.swift; sourceTree = "<group>"; };
 		AF28B33E1D5135CF004CE62E /* PhotoBookCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBookCollectionViewCell.swift; sourceTree = "<group>"; };
 		AF2AE68E1D511F9A00037F2F /* PhotoBookCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBookCollectionViewLayout.swift; sourceTree = "<group>"; };
-		AF6F097D1D49ECC80028992A /* PhotoInfoAnimating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoInfoAnimating.swift; sourceTree = "<group>"; };
 		AFB18E6B1D552BA6007534A5 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		AFD6F1591D47F99400F18036 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AFD6F15B1D47F99400F18036 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -63,6 +63,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		846FAB5E25A2D928001FD28B /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				846FAB5F25A2D945001FD28B /* PhotoInfoAnimation.swift */,
+				846FAB6C25A2E9FB001FD28B /* PhotoBookAnimation.swift */,
+			);
+			path = Animations;
+			sourceTree = "<group>";
+		};
 		84FE462123777A3D00620FC4 /* InfinitePageView */ = {
 			isa = PBXGroup;
 			children = (
@@ -122,15 +131,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		AF6F097C1D49ECC80028992A /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				AF6F097D1D49ECC80028992A /* PhotoInfoAnimating.swift */,
-				AF265A621D516B49009F8088 /* PhotoBookAnimating.swift */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
 		AFD6F1581D47F99400F18036 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -148,7 +148,7 @@
 			children = (
 				AFD6F1601D47F99400F18036 /* AppDelegate.swift */,
 				AF0D584F1D498A6D00FB6E5E /* Models */,
-				AF6F097C1D49ECC80028992A /* Protocols */,
+				846FAB5E25A2D928001FD28B /* Animations */,
 				AF0D58551D498A6D00FB6E5E /* View Controllers */,
 				AF0D58571D498A6D00FB6E5E /* Views */,
 			);
@@ -297,15 +297,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				846FAB6D25A2E9FB001FD28B /* PhotoBookAnimation.swift in Sources */,
 				8401EC072357D4CA006E5D60 /* InfinitePageView.swift in Sources */,
 				AF0D585C1D498A6D00FB6E5E /* PhotoInfo.swift in Sources */,
-				AF6F097E1D49ECC80028992A /* PhotoInfoAnimating.swift in Sources */,
 				84FE4620237776C500620FC4 /* InfinitePageView+WaypointAnimation.swift in Sources */,
 				AF28B33D1D5132E4004CE62E /* PhotoBookViewController.swift in Sources */,
+				846FAB6025A2D945001FD28B /* PhotoInfoAnimation.swift in Sources */,
 				AFD6F16E1D47F99400F18036 /* AppDelegate.swift in Sources */,
 				84FE461E2377754700620FC4 /* InfinitePageView+CursorAnimation.swift in Sources */,
 				AF28B33F1D5135CF004CE62E /* PhotoBookCollectionViewCell.swift in Sources */,
-				AF265A631D516B49009F8088 /* PhotoBookAnimating.swift in Sources */,
 				AF2AE68F1D511F9A00037F2F /* PhotoBookCollectionViewLayout.swift in Sources */,
 				AF0D58641D498A6D00FB6E5E /* PhotoInfoView.swift in Sources */,
 			);

@@ -12,7 +12,22 @@ final class PhotoBookViewController: UIViewController, UICollectionViewDelegate 
     @IBOutlet fileprivate var photoInfoView: PhotoInfoView!
     @IBOutlet fileprivate var photoInfoHeightConstraint: NSLayoutConstraint!
     
-    var photoInfoInteractionView: UIScrollView?
+    private lazy var photoBookAnimation: PhotoBookAnimation = {
+        return PhotoBookAnimation(
+            photoBookLayout: collectionView.collectionViewLayout as! PhotoBookCollectionViewLayout,
+            photoBookCollectionView: collectionView)
+    }()
+    
+    private lazy var verticalInteractionView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.frame.size.height = view.bounds.height
+        scrollView.contentSize = CGSize(width: view.bounds.width, height: view.bounds.height * 2)
+        scrollView.isPagingEnabled = true
+        scrollView.alwaysBounceHorizontal = false
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.showsHorizontalScrollIndicator = false
+        return scrollView
+    }()
     
     fileprivate let photos = PhotoInfo.defaultPhotos
 
@@ -30,61 +45,72 @@ final class PhotoBookViewController: UIViewController, UICollectionViewDelegate 
         // loaded.
         collectionView.layoutIfNeeded()
 
-        preparePhotoInfoInteraction()
-
-        bindObservables()
+        setUpPhotoBookInteraction()
+        setUpPhotoInfoInteraction()
     }
     
     override var prefersStatusBarHidden: Bool {
         return true
     }
+}
 
-    private func bindObservables() {
-        visiblePhotoIndex
-            .drive(onNext: { [unowned self] index in
+extension PhotoBookViewController {
+    
+    private func setUpPhotoBookInteraction () {
+        photoBookAnimation
+            .visiblePhotoIndex
+            .drive(onNext: { [weak self] index in
+                guard let self = self else {
+                    return
+                }
                 self.photoInfoView.populate(withPhotoInfo: self.photos[index])
             })
             .disposed(by: disposeBag)
 
-        bindPhotoInfoParallax()
-            .disposed(by: disposeBag)
-
-        infinitePageView.bindScrollingTransform(photoBookScrollingTransform)
+        infinitePageView
+            .bindScrollingTransform(photoBookAnimation.photoBookScrollingTransform)
             .disposed(by: disposeBag)
     }
-}
-
-extension PhotoBookViewController: PhotoInfoAnimating {
     
-    var photoBookInteractionEnabled: Bool {
-        get { return collectionView.isUserInteractionEnabled == true }
-        set { collectionView.isUserInteractionEnabled = newValue }
-    }
-    
-    var photoBookAlpha: CGFloat {
-        get { return collectionView.alpha }
-        set { collectionView.alpha = newValue }
-    }
-    
-    var photoBookScale: CGFloat {
-        get { return collectionView.transform.a }
-        set { collectionView.transform = CGAffineTransform(scaleX: newValue, y: newValue) }
-    }
-    
-    var photoInfoHeight: CGFloat {
-        get { return photoInfoHeightConstraint.constant }
-        set { photoInfoHeightConstraint?.constant = newValue }
-    }
-}
-
-extension PhotoBookViewController: PhotoBookAnimating {
-
-    var photoBookCollectionView: UICollectionView {
-        return collectionView
-    }
-    
-    var photoBookLayout: PhotoBookCollectionViewLayout {
-        return collectionView.collectionViewLayout as! PhotoBookCollectionViewLayout
+    private func setUpPhotoInfoInteraction() {
+        view.addGestureRecognizer(verticalInteractionView.panGestureRecognizer)
+        view.addSubview(verticalInteractionView)
+        
+        let interactionTransform = verticalInteractionView.rx.contentOffset
+            .map { return $0.y }
+            // Create a transform which follows the content offset over the interval of interaction.
+            .parallax(over: .interval(from: 0, to: verticalInteractionView.bounds.height))
+        
+        let photoInfoAnimation = PhotoInfoAnimation(maxDrawerLength: 128)
+        
+        photoInfoAnimation
+            .photoBookInteractionEnabled
+            .asObservable()
+            .bind(to: collectionView.rx.isUserInteractionEnabled)
+            .disposed(by: disposeBag)
+        
+        photoInfoAnimation
+            .photoBookAlpha
+            .asObservable()
+            .bind(to: collectionView.rx.alpha)
+            .disposed(by: disposeBag)
+        
+        photoInfoAnimation
+            .photoBookScale
+            .emit(onNext: { [weak self] scale in
+                self?.collectionView.transform = CGAffineTransform(scaleX: scale, y: scale)
+            })
+            .disposed(by: disposeBag)
+        
+        photoInfoAnimation
+            .photoInfoDrawerLength
+            .asObservable()
+            .bind(to: photoInfoHeightConstraint.rx.constant)
+            .disposed(by: disposeBag)
+        
+        photoInfoAnimation
+            .bindDrawerInteraction(interactionTransform)
+            .disposed(by: disposeBag)
     }
 }
 
@@ -102,7 +128,8 @@ extension PhotoBookViewController: UICollectionViewDataSource {
 
         cell.image = photos[indexPath.row].image
 
-        bindPagingParallax(to: cell, at: indexPath)
+        photoBookAnimation
+            .bindPagingParallax(to: cell, at: indexPath)
             .disposed(by: cell.disposeBag)
 
         return cell

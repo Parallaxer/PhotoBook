@@ -4,37 +4,25 @@ import RxSwift
 import RxSwiftExt
 import UIKit
 
-protocol PhotoBookComponent: class {
+/// Animate photo cells and maintain the visible photo index as scrolling occurs.
+final class PhotoBookAnimation {
+
+    private let photoBookLayout: PhotoBookCollectionViewLayout
+    private let photoBookCollectionView: UICollectionView
     
-    /// The object responsible for page layout in the collection view.
-    var photoBookLayout: PhotoBookCollectionViewLayout { get }
-
-    /// The collection view in which photos are shown.
-    var photoBookCollectionView: UICollectionView { get }
+    /// Create an object responsible for animating a photo book.
+    /// - Parameters:
+    ///   - photoBookLayout:            The object responsible for page layout in the collection view.
+    ///   - photoBookCollectionView:    The collection view in which photos are shown.
+    init(photoBookLayout: PhotoBookCollectionViewLayout, photoBookCollectionView: UICollectionView) {
+        self.photoBookLayout = photoBookLayout
+        self.photoBookCollectionView = photoBookCollectionView
+    }
 }
 
-/// Conformance adds parallax effects which animate photo cells and maintain the visible photo index as
-/// scrolling occurs.
-protocol PhotoBookAnimating: PhotoBookComponent {
+extension PhotoBookAnimation {
 
-    /// Output signal for the index of the currently selected photo; this changes as the user scrolls
-    /// `photoBookCollectionView`
-    var visiblePhotoIndex: Driver<Int> { get }
-
-    /// Bind a parallax effect to the given `cell` which animates its alpha and scale transform as the user
-    /// scrolls `photoBookCollectionView`.
-    ///
-    /// - Parameter cell:       The cell to animate.
-    /// - Parameter indexPath:  The index path of the cell.
-    /// - Returns: A subscription token.
-    func bindPagingParallax(
-        to cell: UICollectionViewCell,
-        at indexPath: IndexPath)
-        -> Disposable
-}
-
-extension PhotoBookAnimating {
-
+    /// A parallax transform which describes the photo book's content offset in points.
     var photoBookScrollingTransform: Observable<ParallaxTransform<CGFloat>> {
         let lastItemRect = photoBookLayout.numberOfItems
             .asObservable()
@@ -59,8 +47,10 @@ extension PhotoBookAnimating {
     }
 }
 
-extension PhotoBookAnimating {
+extension PhotoBookAnimation {
 
+    /// Output signal for the index of the currently selected photo; this changes as the user scrolls
+    /// `photoBookCollectionView`
     var visiblePhotoIndex: Driver<Int> {
         let lastItemIndex = photoBookLayout.numberOfItems
             .asObservable()
@@ -75,6 +65,12 @@ extension PhotoBookAnimating {
             .asDriver(onErrorJustReturn: 0)
     }
 
+    /// Bind a parallax effect to the given `cell` which animates its alpha and scale transform as the user
+    /// scrolls `photoBookCollectionView`.
+    ///
+    /// - Parameter cell:       The cell to animate.
+    /// - Parameter indexPath:  The index path of the cell.
+    /// - Returns: A subscription token.
     func bindPagingParallax(
         to cell: UICollectionViewCell,
         at indexPath: IndexPath)
