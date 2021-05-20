@@ -8,6 +8,16 @@
 
 - None
 
+# 4.0.0
+
+### Enhancements
+
+- Update to Parallaxer 4.0.0, rewrite parallax effects with new RxSwift extension, add InfinitePageView.
+
+### Bug Fixes
+
+- None
+
 # 3.0.2
 
 ### Enhancements
