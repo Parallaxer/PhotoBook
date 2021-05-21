@@ -4,41 +4,32 @@ import RxSwift
 import RxSwiftExt
 import UIKit
 
-/// Conformance adds parallax effects which animate photo cells and maintain the visible photo index as
-/// scrolling occurs.
-protocol PhotoBookAnimation: class {
+/// Animate photo cells and maintain the visible photo index as scrolling occurs.
+final class PhotoBookAnimation {
 
-    /// The object responsible for page layout in the collection view.
-    var photoBookLayout: PhotoBookCollectionViewLayout { get }
-
-    /// The collection view in which photos are shown.
-    var photoBookCollectionView: UICollectionView { get }
-
-    /// Output signal for the index of the currently selected photo; this changes as the user scrolls
-    /// `photoBookCollectionView`
-    var visiblePhotoIndex: Driver<Int> { get }
-
-    /// Bind a parallax effect to the given `cell` which animates its alpha and scale transform as the user
-    /// scrolls `photoBookCollectionView`.
-    ///
-    /// - Parameter cell:       The cell to animate.
-    /// - Parameter indexPath:  The index path of the cell.
-    /// - Returns: A subscription token.
-    func bindPagingParallax(
-        to cell: UICollectionViewCell,
-        at indexPath: IndexPath)
-        -> Disposable
+    private let photoBookLayout: PhotoBookCollectionViewLayout
+    private let photoBookCollectionView: UICollectionView
+    
+    /// Create an object responsible for animating a photo book.
+    /// - Parameters:
+    ///   - photoBookLayout:            The object responsible for page layout in the collection view.
+    ///   - photoBookCollectionView:    The collection view in which photos are shown.
+    init(photoBookLayout: PhotoBookCollectionViewLayout, photoBookCollectionView: UICollectionView) {
+        self.photoBookLayout = photoBookLayout
+        self.photoBookCollectionView = photoBookCollectionView
+    }
 }
 
 extension PhotoBookAnimation {
 
+    /// A parallax transform which describes the photo book's content offset in points.
     var photoBookScrollingTransform: Observable<ParallaxTransform<CGFloat>> {
         let lastItemRect = photoBookLayout.numberOfItems
             .asObservable()
             .map { [weak self] numberOfItems -> CGRect? in
                 let lastItemIndex = numberOfItems - 1
                 return self?.photoBookLayout.rectForItem(atIndex: lastItemIndex)
-        }
+            }
 
         let lastItemPosition = lastItemRect
             .filterMap { rect -> FilterMap<CGFloat> in
@@ -58,20 +49,28 @@ extension PhotoBookAnimation {
 
 extension PhotoBookAnimation {
 
+    /// Output signal for the index of the currently selected photo; this changes as the user scrolls
+    /// `photoBookCollectionView`
     var visiblePhotoIndex: Driver<Int> {
         let lastItemIndex = photoBookLayout.numberOfItems
             .asObservable()
             .map { CGFloat($0 - 1) }
         return photoBookScrollingTransform
-            .parallaxScale(to: .interval(from: .just(0), to: lastItemIndex))
+            .parallaxRelate(to: .interval(from: .just(0), to: lastItemIndex))
             // Clamp to the interval so we don't miscalculate an index and cause an out-of-bounds error.
-            .parallaxReposition(with: .just(.clampToUnitInterval))
+            .parallaxMorph(with: .just(.clampToUnitInterval))
             .parallaxValue()
             .map { return Int(round($0)) }
             .distinctUntilChanged()
             .asDriver(onErrorJustReturn: 0)
     }
 
+    /// Bind a parallax effect to the given `cell` which animates its alpha and scale transform as the user
+    /// scrolls `photoBookCollectionView`.
+    ///
+    /// - Parameter cell:       The cell to animate.
+    /// - Parameter indexPath:  The index path of the cell.
+    /// - Returns: A subscription token.
     func bindPagingParallax(
         to cell: UICollectionViewCell,
         at indexPath: IndexPath)
@@ -104,31 +103,30 @@ extension PhotoBookAnimation {
 
         let pageVisibility = photoBookScrollingTransform
             // Normalize.
-            .parallaxScale(to: .interval(from: CGFloat(0), to: 1))
+            .parallaxRelate(to: .interval(from: CGFloat(0), to: 1))
             // Focus only on the the portion of the interval where the item is visible on screen.
-            .parallaxFocus(subinterval: .interval(from: itemStart, to: itemEnd))
+            .parallaxFocus(on: .interval(from: itemStart, to: itemEnd))
             // Normalize.
-            .parallaxScale(to: .interval(from: CGFloat(0), to: 1))
+            .parallaxRelate(to: .interval(from: CGFloat(0), to: 1))
             // Expand the focus interval to encompass the item being completely off screen (-1), completely on
             // screen (0) and, finally, completely off screen on the other side (1).
-            .parallaxFocus(subinterval: .interval(from: -1, to: 1))
+            .parallaxFocus(on: .interval(from: -1, to: 1))
             // Clamp the interval so that future transformations occur only over the focused interval.
-            .parallaxReposition(with: .just(.clampToUnitInterval))
+            .parallaxMorph(with: .just(.clampToUnitInterval))
             // We want to apply symmetrical visual effects as the page scrolls onto the screen from one side
             // and then scrolls off the screen from the other side.
             //
-            // To accomplish the symmetrical nature of the effect, we can oscillate the transform's unit
-            // position just once so that it moves from 0 to 1 and then back to 0 over the course of its
-            // parent interval (the focused interval, [-1, 1] that we set just above).
+            // To accomplish the symmetrical nature of the effect, we can oscillate the transform's position
+            // just once so that it moves from 0 to 1 and then back to 0 over the course of its parent
+            // interval (the focused interval, [-1, 1] that we set just above).
             //
-            // Thus the unit position shall be 1 when the item is at the center of the screen, and the unit
-            // position shall be 0 when the item is at either edge of the screen.
+            // Thus the position shall be 1 when the item is at the center of the screen, and the position
+            // shall be 0 when the item is at either edge of the screen.
             //
-            // (Try changing `numberOfTimes` to 5 and see what happens when you scroll slowl through the
-            // photos.)
-            .parallaxReposition(with: .just(.oscillate(numberOfTimes: 1)))
+            // (Try changing `numberOfTimes` to 5 and see what happens when you scroll through the photos.)
+            .parallaxMorph(with: .just(.oscillate(numberOfTimes: 1)))
             // Share the observable since it'll be used to drive multiple effects (fade and scale).
-            .share(replay: 1)
+            .share()
 
         return Disposables.create([
             bindFadeEffect(to: cell, pageVisibility: pageVisibility),
@@ -143,7 +141,7 @@ extension PhotoBookAnimation {
     {
         return pageVisibility
             // Scale down as the item visibility approaches the edge of the interval.
-            .parallaxScale(to: .interval(from: 0.5, to: 1))
+            .parallaxRelate(to: .interval(from: 0.5, to: 1))
             .parallaxValue()
             .subscribe(onNext: { [weak cell] alpha in
                 // Change cell's alpha.
@@ -158,7 +156,7 @@ extension PhotoBookAnimation {
     {
         return pageVisibility
             // Scale down as the item visibility approaches the edge of the interval.
-            .parallaxScale(to: .interval(from: 0.85, to: 1))
+            .parallaxRelate(to: .interval(from: 0.85, to: 1))
             .parallaxValue()
             .subscribe(onNext: { [weak cell] scale in
                 // Change cell's scale.

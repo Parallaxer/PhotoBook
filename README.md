@@ -4,18 +4,18 @@ An example app which showcases the [Parallaxer](https://github.com/Parallaxer/Pa
 ![Parallaxer in action](/../media/Media/demo.gif?raw=true "Parallaxer in action")
 
 ## Requirements
-- Swift 4.2
-- iOS 9+
+- Swift 5.0
+- iOS 12+
 
 ## Installation
 
-1) Download the source:
+Download the source, update pods, and launch the workspace in Xcode:
 ```
 $ git clone https://github.com/Parallaxer/PhotoBook.git
 $ cd PhotoBook/
+$ pod install
+$ open PhotoBook.xcworkspace
 ```
-
-2) Open *PhotoBook.xcworkspace* in Xcode and run.
 
 ## License
 
