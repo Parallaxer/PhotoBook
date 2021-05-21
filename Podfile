@@ -8,5 +8,5 @@ target 'PhotoBook' do
   pod 'RxSwift', '~> 5.0.0'
   pod 'RxSwiftExt'
 
-  pod 'Parallaxer', :git => 'https://github.com/Parallaxer/Parallaxer', :branch => 'rx'
+  pod 'Parallaxer'
 end

@@ -27,19 +27,15 @@ extension InfinitePageView {
      {
          let radius = waypointRadius
          let wrappingDistanceInterval = wrappingInterval
-             .map { wrappingInterval -> ParallaxInterval<CGFloat>? in
-                 guard let wrappingInterval = wrappingInterval else {
-                     return nil
-                 }
-
-                 let wrappingDistance = InfinitePageView.distanceBetweenPages(
-                     atIndexA: Int(wrappingInterval.from),
-                     indexB: Int(wrappingInterval.to),
-                     radius: radius)
-
-                 return try ParallaxInterval(from: 0, to: -wrappingDistance)
-             }
-             .skipNil()
+            .skipNil()
+            .map { wrappingInterval -> ParallaxInterval<CGFloat> in
+                let wrappingDistance = InfinitePageView.distanceBetweenPages(
+                    atIndexA: Int(wrappingInterval.from),
+                    indexB: Int(wrappingInterval.to),
+                    radius: radius)
+                
+                return try ParallaxInterval(from: 0, to: -wrappingDistance)
+            }
 
          let wrappingDistanceTransform = wrappingTransform
              .distinctUntilChanged()

@@ -4,7 +4,6 @@ PODS:
   - Parallaxer/Base (4.0.0)
   - Parallaxer/RxSwift (4.0.0):
     - Parallaxer/Base
-    - RxCocoa
     - RxSwift
   - RxCocoa (5.0.1):
     - RxRelay (~> 5)
@@ -22,35 +21,26 @@ PODS:
     - RxSwiftExt/Core
 
 DEPENDENCIES:
-  - Parallaxer (from `https://github.com/Parallaxer/Parallaxer`, branch `rx`)
+  - Parallaxer
   - RxCocoa (~> 5.0.0)
   - RxSwift (~> 5.0.0)
   - RxSwiftExt
 
 SPEC REPOS:
   trunk:
+    - Parallaxer
     - RxCocoa
     - RxRelay
     - RxSwift
     - RxSwiftExt
 
-EXTERNAL SOURCES:
-  Parallaxer:
-    :branch: rx
-    :git: https://github.com/Parallaxer/Parallaxer
-
-CHECKOUT OPTIONS:
-  Parallaxer:
-    :commit: c946724fe30cabebe8a4847d2daf8a347366fabc
-    :git: https://github.com/Parallaxer/Parallaxer
-
 SPEC CHECKSUMS:
-  Parallaxer: 1d2c5deb45eb8ad393b38f0d4f313e65fed22e27
+  Parallaxer: 83f485dd45874b81ec4c083281c5bead1c48452f
   RxCocoa: e741b9749968e8a143e2b787f1dfbff2b63d0a5c
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: e2dc62b366a3adf6a0be44ba9f405efd4c94e0c4
   RxSwiftExt: 4ca80336f43c28f11a2825cdd2fc61dd6c044697
 
-PODFILE CHECKSUM: 97286db5837f2a04a192a2bab222566e79dd841f
+PODFILE CHECKSUM: 1e79f536648d24644ced992ba205f00f9a35ad09
 
-COCOAPODS: 1.10.0.rc.1
+COCOAPODS: 1.10.1
